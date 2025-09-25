@@ -320,4 +320,10 @@ def reflection(state: Dict[str, Any]) -> Dict[str, Any]:
     # should_retry 상태는 pipeline의 조건부 엣지에서 사용됨
     state["should_retry"] = should_retry
     
+    # 캐시 보존 확인 (디버깅)
+    if "full_ranked_cocktails" in state:
+        print(f"🔍 Reflection 종료 시 캐시 상태: {len(state.get('full_ranked_cocktails', []))}개")
+    else:
+        print(f"⚠️ Reflection 종료 시 full_ranked_cocktails 키 없음")
+    
     return state

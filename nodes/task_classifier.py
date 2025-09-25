@@ -5,7 +5,6 @@ import json
 import os
 from typing import Dict, Any
 import sys
-from nodes.user_question import initial_query
 
 # 상위 디렉토리의 모듈 임포트를 위한 경로 추가
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,9 +30,7 @@ def query_classification(state: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         태스크 분류 결과가 포함된 상태 딕셔너리
     """
-    # 먼저 initial_query 실행하여 이미지 처리
-    state = initial_query(state)
-    
+
     # 분류할 텍스트 가져오기
     query_text = state.get("input_text_with_image", state.get("input_text", ""))
     

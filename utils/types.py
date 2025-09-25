@@ -27,6 +27,7 @@ class PipelineState(TypedDict, total=False):
     current_top_k: int                    # 현재 검색 top-k 값
     search_results: List[Dict[str, Any]]  # 현재 라운드 검색 결과 리스트
     cumulative_results: List[Dict[str, Any]]  # 누적 검색 결과 (증분 검색용)
+    full_ranked_cocktails: List[str]      # 전체 유사도 랭킹된 칵테일 이름 리스트 (캐싱용)
     
     # -------------------
     # Reflection 관련

@@ -16,7 +16,7 @@ def format_system_analysis_info(task_type: str, task_confidence: float, task_rea
                                evaluation_scores: Dict[str, float], 
                                reflection_feedback: str) -> str:
     """
-    시스템 분석 정보를 사용자 친화적으로 포맷팅
+    format system analysis info for user-friendly
     
     Args:
         task_type: 분류된 태스크 타입
@@ -34,21 +34,21 @@ def format_system_analysis_info(task_type: str, task_confidence: float, task_rea
     """
     # 태스크 타입별 이름 매핑
     task_names = {
-        "C1": "색상-재료 기반 시각 검색",
-        "C2": "글라스 타입 + 재료 매칭", 
-        "C3": "Multi-hop 재료 확장 검색",
-        "C4": "칵테일 유사도 및 대안 추천"
+        "C1": "Color-Ingredient Visual Search",
+        "C2": "Glass Type + Ingredient Matching", 
+        "C3": "Multi-hop Ingredient Expansion Search",
+        "C4": "Cocktail Recipe Similarity and Alternative Recommendation"
     }
     
     task_name = task_names.get(task_type, task_type)
     
-    # 분류 정보
-    classification_info = f"""🎯 태스크 분류:
-- 분류 결과: {task_type} ({task_name})
-- 신뢰도: {task_confidence:.1f}%
-- 분류 이유: {task_reason}"""
+    # classification info
+    classification_info = f"""🎯 task classification:
+- classification result: {task_type} ({task_name})
+- confidence: {task_confidence:.1f}%
+- classification reason: {task_reason}"""
     
-    # 선택 정보 - 라운드별 상황 설명
+    # selection info - round-wise situation description
     if final_best_round == 1:
         selection_reason = "첫 번째 검색에서 충분한 품질 달성"
     elif final_best_score >= 80:
@@ -56,11 +56,11 @@ def format_system_analysis_info(task_type: str, task_confidence: float, task_rea
     else:
         selection_reason = f"3회 반복 중 Round {final_best_round}에서 최고 품질 달성"
     
-    selection_info = f"""🏆 최종 선택:
-- 선택된 라운드: Round {final_best_round}
-- 추천 칵테일 수: {cocktails_count}개 (Top-{final_best_top_k} 검색)
-- 품질 점수: {final_best_score:.1f}/100점
-- 선택 이유: {selection_reason}"""
+    selection_info = f"""🏆 final selection:
+- selected round: Round {final_best_round}
+- recommended cocktails: {cocktails_count} (Top-{final_best_top_k} search)
+- quality score: {final_best_score:.1f}/100 points
+- selection reason: {selection_reason}"""
     
     # 평가 점수 - 더 상세한 설명
     if evaluation_scores:
@@ -70,21 +70,21 @@ def format_system_analysis_info(task_type: str, task_confidence: float, task_rea
             completeness = float(evaluation_scores.get('completeness', 0))
             coherence = float(evaluation_scores.get('coherence', 0))
             
-            evaluation_info = f"""📊 품질 평가 세부 점수:
-- 관련성 (Relevance): {relevance:.1f}/100점 - 질문과의 연관성
-- 다양성 (Diversity): {diversity:.1f}/100점 - 추천의 다양성
-- 완전성 (Completeness): {completeness:.1f}/100점 - 요구사항 충족도
-- 일관성 (Coherence): {coherence:.1f}/100점 - 논리적 일관성
-- 전체 점수: {final_best_score:.1f}/100점
+            evaluation_info = f"""📊 evaluation details:
+- relevance (Relevance): {relevance:.1f}/100 points - relevance to the question
+- diversity (Diversity): {diversity:.1f}/100 points - recommendation diversity
+- completeness (Completeness): {completeness:.1f}/100 points - requirement satisfaction
+- coherence (Coherence): {coherence:.1f}/100 points - logical consistency
+- overall score: {final_best_score:.1f}/100 points
 
-💡 시스템 피드백: {reflection_feedback}"""
+💡 system feedback: {reflection_feedback}"""
         except (ValueError, TypeError):
-            evaluation_info = f"""📊 품질 평가:
-- 전체 점수: {final_best_score:.1f}/100점
-- 피드백: {reflection_feedback}"""
+            evaluation_info = f"""📊 evaluation:
+- overall score: {final_best_score:.1f}/100 points
+- feedback: {reflection_feedback}"""
     else:
-        evaluation_info = f"""📊 품질 평가:
-- 전체 점수: {final_best_score:.1f}/100점"""
+        evaluation_info = f"""📊 evaluation:
+- overall score: {final_best_score:.1f}/100 points"""
     
     return f"""
 {classification_info}
@@ -100,16 +100,16 @@ prompt_loader = PromptLoader()
 
 def format_cocktails_for_response(cocktails: List[Dict[str, Any]]) -> str:
     """
-    칵테일 리스트를 최종 응답용으로 포맷팅
+    format cocktails list for final response
     
     Args:
-        cocktails: 칵테일 정보 리스트
+        cocktails: cocktails info list
         
     Returns:
         포맷된 텍스트
     """
     if not cocktails:
-        return "추천할 칵테일을 찾지 못했습니다."
+        return "No cocktails found."
     
     formatted_lines = []
     
@@ -121,34 +121,34 @@ def format_cocktails_for_response(cocktails: List[Dict[str, Any]]) -> str:
         description = cocktail.get('description', '')
         instructions = cocktail.get('instructions', '')
         
-        # 헤더
+        # header
         formatted_lines.append(f"{i}. **{name}**")
-        formatted_lines.append(f"   - 카테고리: {category}")
-        formatted_lines.append(f"   - 글라스 타입: {glass_type}")
-        formatted_lines.append(f"   - 알코올: {alcoholic}")
+        formatted_lines.append(f"   - category: {category}")
+        formatted_lines.append(f"   - glass_type: {glass_type}")
+        formatted_lines.append(f"   - alcoholic: {alcoholic}")
         
-        # 재료 정보
+        # ingredients info
         recipe_ingredients = cocktail.get('recipe_ingredients', [])
         ingredients = cocktail.get('ingredients', [])
         
         if recipe_ingredients:
-            formatted_lines.append("   - 재료:")
+            formatted_lines.append("   - ingredients:")
             for ingredient_info in recipe_ingredients:
                 measure = ingredient_info.get('measure', 'unknown')
                 ingredient = ingredient_info.get('ingredient', 'unknown')
                 formatted_lines.append(f"     • {measure} {ingredient}")
         elif ingredients:
-            formatted_lines.append(f"   - 재료: {', '.join(ingredients)}")
+            formatted_lines.append(f"   - ingredients: {', '.join(ingredients)}")
         
-        # 제조법
+        # instructions
         if instructions:
-            formatted_lines.append(f"   - 제조법: {instructions}")
+            formatted_lines.append(f"   - instructions: {instructions}")
             
-        # 설명
+        # description
         if description:
-            formatted_lines.append(f"   - 설명: {description}")
+            formatted_lines.append(f"   - description: {description}")
         
-        formatted_lines.append("")  # 빈 줄
+        formatted_lines.append("")  # empty line
     
     return "\n".join(formatted_lines)
 
@@ -174,8 +174,28 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
         # 태스크별 프롬프트 로드
         task_prompt = prompt_loader.get_task_prompt(task_type)
         
+        # 디버깅: 태스크 프롬프트 확인
+        print(f"🔍 태스크 프롬프트 확인 ({task_type}):")
+        print(f"   - 프롬프트 길이: {len(task_prompt)} 글자")
+        print(f"   - context 플레이스홀더 포함: {'context' in task_prompt}")
+        print(f"   - question 플레이스홀더 포함: {'question' in task_prompt}")
+        if 'context' in task_prompt:
+            # context가 어디에 위치하는지 확인
+            context_pos = task_prompt.find('{context}')
+            context_preview = task_prompt[max(0, context_pos-50):context_pos+100] if context_pos != -1 else "NOT_FOUND"
+            print(f"   - context 위치 주변: ...{context_preview}...")
+        
         # 칵테일 정보 포맷팅
         cocktails_context = format_cocktails_for_response(cocktails)
+        
+        # 디버깅: 칵테일 컨텍스트 내용 확인
+        print(f"🔍 칵테일 컨텍스트 확인:")
+        print(f"   - 칵테일 수: {len(cocktails)}")
+        if cocktails:
+            cocktail_names = [c.get('name', 'Unknown') for c in cocktails]
+            print(f"   - 칵테일 이름들: {cocktail_names}")
+        print(f"   - 포맷된 컨텍스트 길이: {len(cocktails_context)} 글자")
+        print(f"   - 컨텍스트 미리보기 (처음 200자): {cocktails_context[:200]}...")
         
         # 평가 정보 포맷팅
         evaluation_text = ""
@@ -190,20 +210,20 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
                 overall_score = (relevance + diversity + completeness + coherence) / 4
                 
                 evaluation_text = f"""
-평가 점수:
-- 관련성: {relevance:.1f}점
-- 다양성: {diversity:.1f}점  
-- 완전성: {completeness:.1f}점
-- 일관성: {coherence:.1f}점
-- 전체: {overall_score:.1f}점
+evaluation scores:
+- relevance: {relevance:.1f} points
+- diversity: {diversity:.1f} points  
+- completeness: {completeness:.1f} points
+- coherence: {coherence:.1f} points
+- overall: {overall_score:.1f} points
 
 {reflection_feedback}
 """
             except (ValueError, TypeError) as e:
                 print(f"⚠️ 평가 점수 변환 오류: {e}")
                 evaluation_text = f"""
-평가 점수 변환 중 오류가 발생했습니다.
-원본 데이터: {evaluation_scores}
+Evaluation scores conversion error occurred.
+original data: {evaluation_scores}
 
 {reflection_feedback}
 """
@@ -227,18 +247,27 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
             reflection_feedback=reflection_feedback
         )
 
-        # 추가 지시사항 포함
+        # 순수한 칵테일 정보만으로 프롬프트 구성 (시스템 분석 정보 제외)
         enhanced_prompt = f"""{prompt}
 
----
-시스템 분석 정보:
-{system_analysis}
----
-
-위의 칵테일 정보와 시스템 분석 정보를 바탕으로, 사용자에게 도움이 되는 상세한 설명과 함께 칵테일을 추천해주세요.
-추천 이유, 맛의 특징, 상황별 추천 등을 포함하여 설명하고, 답변 마지막에 "📋 시스템 분석 정보" 섹션을 추가하여 위의 시스템 분석 정보를 사용자 친화적으로 포함해주세요."""
-
+Based on the cocktail information above, please recommend cocktails with detailed explanations that are helpful for the user.
+Include reasons for recommendation, flavor characteristics, and situational suggestions in your explanation."""
         print(f"🎯 최종 응답 생성 중... ({task_type})")
+        
+        # LLM이 받는 최종 컨텍스트를 HTML로 표시
+        from IPython.display import display, HTML
+        
+        # HTML 형태로 컨텍스트 포맷팅
+        html_content = f"""
+        <div style="border: 2px solid #4CAF50; border-radius: 10px; padding: 20px; margin: 10px 0; background-color: #f8f9fa;">
+            <h3 style="color: #2E8B57; margin-top: 0;">🤖 LLM이 받는 최종 컨텍스트 ({task_type})</h3>
+            <div style="background-color: white; border: 1px solid #ddd; border-radius: 5px; padding: 15px; font-family: monospace; white-space: pre-wrap; max-height: 600px; overflow-y: auto;">
+{enhanced_prompt}
+            </div>
+        </div>
+        """
+        
+        display(HTML(html_content))
         
         # OpenAI API 호출
         response = openai_client.generate(enhanced_prompt, max_tokens=1500)
@@ -249,9 +278,9 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
         print(f"❌ 응답 생성 오류: {e}")
         # 기본 응답 생성
         cocktails_text = format_cocktails_for_response(cocktails)
-        return f"""죄송합니다. 응답 생성 중 오류가 발생했습니다.
+        return f"""Sorry, an error occurred while generating the response.
 
-다음 칵테일들을 추천드립니다:
+We recommend the following cocktails:
 
 {cocktails_text}
 
@@ -290,7 +319,26 @@ def generator(state: Dict[str, Any]) -> Dict[str, Any]:
             initial_score = state.get("initial_score", 0)
             initial_feedback = state.get("initial_feedback", "초기 검색 결과")
             
-            print(f"🔍 초기 평가 점수 확인:")
+            # 초기 점수가 없는 경우, best_result에서 Round 1 정보 찾기
+            if initial_score == 0 and "best_result" in state:
+                best_result = state["best_result"]
+                if best_result.get("iteration") == 1:
+                    # best_result가 Round 1 결과인 경우
+                    initial_score = best_result.get("score", 0)
+                    initial_evaluation_scores = best_result.get("evaluation", {})
+                    initial_feedback = initial_evaluation_scores.get("feedback", "Round 1 검색 결과")
+                    print(f"📋 best_result에서 Round 1 점수 복구: {initial_score}점")
+                else:
+                    # 디버깅을 위해 debug_info에서 reflection 히스토리 확인
+                    reflection_history = state.get("debug_info", {}).get("reflection_history", [])
+                    if reflection_history:
+                        round1_result = reflection_history[0]  # 첫 번째 라운드
+                        initial_score = round1_result.get("score", 0)
+                        initial_evaluation_scores = round1_result.get("scores", {})
+                        initial_feedback = initial_evaluation_scores.get("feedback", "Round 1 검색 결과")
+                        print(f"📋 reflection_history에서 Round 1 점수 복구: {initial_score}점")
+            
+            print(f"🔍 초기 평가 점수 (최종 확인):")
             print(f"   - initial_evaluation_scores: {initial_evaluation_scores}")
             print(f"   - initial_score: {initial_score}")
             print(f"   - initial_feedback: {initial_feedback}")

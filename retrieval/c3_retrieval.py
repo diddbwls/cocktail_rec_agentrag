@@ -288,7 +288,7 @@ class C3Retrieval(BaseRetrieval):
         
         return cocktails
     
-    def retrieve(self, user_question: str) -> List[Dict[str, Any]]:
+    def retrieve(self, user_question: str) -> Dict[str, Any]:
         """Multi-hop 재료 확장 기반 칵테일 검색 알고리즘"""
         print(f"C3 Retrieval (Multi-hop 재료 확장): 사용자 질문 - {user_question}")
         
@@ -334,13 +334,14 @@ class C3Retrieval(BaseRetrieval):
         unique_cocktails = self.remove_duplicates_preserve_order(all_candidate_cocktails)
         print(f"4단계 - 후보 정리: {len(unique_cocktails)}개 (중복 제거 후)")
         
-        # imageDescription 임베딩 유사도로 최종 순위 결정 (동적으로 업데이트된 값 사용)
+        # imageDescription 임베딩 유사도로 전체 순위 결정
         ranked_cocktails = self.rank_by_image_similarity(user_question, unique_cocktails)
         final_top_k = self.config.get('final_top_k', self.c3_config['final_top_k'])
         print(f"🔧 최종 선정 개수: {final_top_k}개 (config: {self.config.get('final_top_k')}, c3_config: {self.c3_config['final_top_k']})")
-        final_cocktail_names = ranked_cocktails[:final_top_k]
         
-        print(f"4단계 - 최종 선정: {len(final_cocktail_names)}개")
+        # 현재 라운드에 필요한 만큼만 선택
+        final_cocktail_names = ranked_cocktails[:final_top_k]
+        print(f"4단계 - 최종 선정: {len(final_cocktail_names)}개 (전체 랭킹: {len(ranked_cocktails)}개)")
         for i, name in enumerate(final_cocktail_names, 1):
             print(f"   {i}. {name}")
         
@@ -348,4 +349,9 @@ class C3Retrieval(BaseRetrieval):
         final_results = self.get_cocktail_details(final_cocktail_names)
         print(f"5단계 - Multi-hop 검색 완료: {len(final_results)}개 결과")
         
-        return final_results
+        # dict 형태로 반환 (캐싱을 위해)
+        return {
+            'results': final_results,
+            'full_ranked_names': ranked_cocktails,  # 전체 유사도 랭킹된 이름 리스트
+            'current_top_k': final_top_k
+        }

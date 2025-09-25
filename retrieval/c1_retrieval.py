@@ -193,8 +193,8 @@ class C1Retrieval(BaseRetrieval):
         
         return []
 
-    def rank_by_final_image_similarity(self, user_question: str, cocktail_names: List[str]) -> List[Dict[str, Any]]:
-        """최종 imageDescription 유사도 기반 랭킹"""
+    def rank_all_candidates_by_similarity(self, user_question: str, cocktail_names: List[str]) -> List[str]:
+        """전체 후보를 유사도 높은순→낮은순으로 정렬하여 이름 리스트 반환"""
         if not cocktail_names:
             return []
         
@@ -217,22 +217,22 @@ class C1Retrieval(BaseRetrieval):
                     cocktail_embedding = record['embedding']
                     similarity = self.calculate_cosine_similarity(question_embedding, cocktail_embedding)
                     cocktail_similarities.append((name, similarity))
+                else:
+                    # embedding이 없으면 낮은 점수로 설정
+                    cocktail_similarities.append((name, 0.0))
         
-        # 유사도 기준으로 정렬
+        # 유사도 기준으로 정렬 (높은순→낮은순)
         cocktail_similarities.sort(key=lambda x: x[1], reverse=True)
         
-        # 최종 top_k개 선정 (동적으로 업데이트된 값 사용)
-        final_top_k = self.config.get('final_top_k', self.c1_config['final_top_k'])
-        print(f"🔧 최종 선정 개수: {final_top_k}개 (config: {self.config.get('final_top_k')}, c1_config: {self.c1_config['final_top_k']})")
-        final_names = [name for name, _ in cocktail_similarities[:final_top_k]]
+        # 전체 유사도 랭킹 출력
+        print(f"전체 후보 유사도 랭킹:")
+        for i, (name, similarity) in enumerate(cocktail_similarities, 1):
+            print(f"   {i}. {name} (유사도: {similarity:.3f})")
         
-        print(f"최종 이미지 유사도 랭킹: {len(final_names)}개 칵테일 선정")
-        print(f"   → 최종 선정: {final_names}")
-        
-        # 상세 정보 가져오기
-        return self.get_cocktail_details(final_names)
+        # 유사도순 정렬된 이름 리스트 반환
+        return [name for name, _ in cocktail_similarities]
 
-    def retrieve(self, user_question: str) -> List[Dict[str, Any]]:
+    def retrieve(self, user_question: str) -> Dict[str, Any]:
         """색상 기반 재료 매칭을 활용한 시각 검색 알고리즘"""
         print(f"C1 Retrieval (색상-재료 기반): 사용자 질문 - {user_question}")
         
@@ -248,7 +248,7 @@ class C1Retrieval(BaseRetrieval):
         
         if not initial_candidates:
             print("❌ 초기 후보를 찾을 수 없습니다.")
-            return []
+            return {'results': [], 'full_ranked_names': [], 'current_top_k': 0}
         
         # 3단계: 색상 키워드가 있으면 색상-재료 매칭으로 확장
         expanded_cocktails = []
@@ -277,8 +277,21 @@ class C1Retrieval(BaseRetrieval):
         else:
             print(f"   → 전체 후보 (처음 10개): {all_candidates[:10]}...")
         
-        # 4단계: 최종 시각 유사도 랭킹
-        final_results = self.rank_by_final_image_similarity(user_question, all_candidates)
-        print(f"4단계 - 최종 시각 랭킹 완료: {len(final_results)}개 결과")
+        # 4단계: 전체 후보를 유사도순으로 정렬
+        similarity_ranked_names = self.rank_all_candidates_by_similarity(user_question, all_candidates)
         
-        return final_results
+        # 현재 라운드에 필요한 만큼만 선택
+        final_top_k = self.config.get('final_top_k', self.c1_config['final_top_k'])
+        print(f"🔧 최종 선정 개수: {final_top_k}개 (config: {self.config.get('final_top_k')}, c1_config: {self.c1_config['final_top_k']})")
+        current_round_names = similarity_ranked_names[:final_top_k]
+        
+        # 상세 정보 가져오기
+        current_results = self.get_cocktail_details(current_round_names)
+        print(f"4단계 - C1 검색 완료: {len(current_results)}개 결과 (전체 랭킹: {len(similarity_ranked_names)}개)")
+        
+        # dict 형태로 반환 (캐싱을 위해)
+        return {
+            'results': current_results,
+            'full_ranked_names': similarity_ranked_names,  # 전체 유사도순 이름 리스트
+            'current_top_k': final_top_k
+        }

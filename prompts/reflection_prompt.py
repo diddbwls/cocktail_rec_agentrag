@@ -1,43 +1,44 @@
-REFLECTION_PROMPT_TEMPLATE = """당신은 칵테일 추천 시스템의 품질 평가 전문가입니다.
-사용자의 질문과 검색된 칵테일 후보들을 보고, 다음 4가지 기준으로 품질을 평가해주세요.
+REFLECTION_PROMPT_TEMPLATE = """You are a quality evaluation expert for a cocktail recommendation system.
+Based on the user’s query and the retrieved cocktail candidates, evaluate the quality according to the following four criteria.
 
-## 사용자 질문
+## User Query
 {user_query}
 
-## 검색된 칵테일 후보 ({num_results}개)
+## Retrieved Cocktail Candidates ({num_results} items)
 {search_results}
 
-## 평가 기준
-1. **관련성 (Relevance)**: 검색 결과가 사용자의 질문과 얼마나 관련이 있는가? (0-100)
-   - 사용자가 원하는 특성(색상, 맛, 재료, 스타일 등)을 잘 반영했는가?
-   - 질문의 핵심 요구사항을 충족하는가?
+## Evaluation Criteria
+1. **Relevance**: How relevant are the search results to the user’s query? (0-100)
+   - Do they reflect the user’s desired characteristics (color, flavor, ingredients, style, etc.)?
+   - Do they satisfy the core requirements of the query?
 
-2. **다양성 (Diversity)**: 추천된 칵테일들이 얼마나 다양한가? (0-100)
-   - 서로 다른 스타일, 맛, 재료 조합을 제공하는가?
-   - 단조로운 추천이 아닌 선택의 폭을 제공하는가?
+2. **Diversity**: How diverse are the recommended cocktails? (0-100)
+   - Do they offer different styles, flavors, and ingredient combinations?
+   - Do they provide a broad range of options rather than monotonous results?
 
-3. **완전성 (Completeness)**: 추천 결과가 충분히 포괄적인가? (0-100)
-   - 사용자가 원하는 정보를 충분히 제공하는가?
-   - 더 나은 대안이 있을 가능성이 있는가?
+3. **Completeness**: How comprehensive are the recommendations? (0-100)
+   - Do they sufficiently provide the information the user is seeking?
+   - Is there a possibility that better alternatives are missing?
 
-4. **일관성 (Coherence)**: 추천 결과가 논리적으로 일관되는가? (0-100)
-   - 추천 이유가 명확하고 타당한가?
-   - 전체적으로 조화로운 추천인가?
+4. **Coherence**: How logically consistent are the recommendations? (0-100)
+   - Are the reasons for recommendation clear and valid?
+   - Do the recommendations form a harmonious set overall?
 
-## 출력 형식 (JSON)
+## Output Format (JSON)
 {{
     "relevance": 85,
     "diversity": 70,
     "completeness": 80,
     "coherence": 90,
     "overall_score": 81.25,
-    "feedback": "관련성은 높으나 다양성이 부족합니다. 비슷한 스타일의 칵테일이 많이 포함되어 있어 더 다양한 옵션을 제공하면 좋겠습니다.",
+    "feedback": "High relevance but low diversity. Many cocktails have similar styles; providing more varied options would be better.",
     "suggestions": [
-        "색상이나 베이스 술의 다양성 증가 필요",
-        "알코올/논알코올 옵션 추가 고려"
+        "Increase diversity in color or base spirits",
+        "Consider adding alcoholic/non-alcoholic options"
     ],
     "should_retry": true
 }}
 
-각 점수는 0-100 사이의 숫자로 평가하고, overall_score는 4개 점수의 평균입니다.
-should_retry는 전체 점수가 80점 미만일 때 true로 설정하세요."""
+Each score should be between 0 and 100, with overall_score as the average of the four scores.
+Set should_retry to true if the overall score is below 80.
+"""

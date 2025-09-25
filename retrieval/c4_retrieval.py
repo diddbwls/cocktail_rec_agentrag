@@ -256,7 +256,7 @@ class C4Retrieval(BaseRetrieval):
         
         return cocktails
     
-    def retrieve(self, user_question: str) -> List[Dict[str, Any]]:
+    def retrieve(self, user_question: str) -> Dict[str, Any]:
         """관계 기반 + 복잡도 필터링 칵테일 대안 검색 알고리즘"""
         print(f"C4 Retrieval (관계 기반 + 복잡도): 사용자 질문 - {user_question}")
         
@@ -285,7 +285,12 @@ class C4Retrieval(BaseRetrieval):
                     question_embedding, session, top_k=self.c4_config['embedding_fallback_top_k']
                 )
                 fallback_names = [name for name, _ in similar_cocktails]
-                return self.get_cocktail_details(fallback_names)
+                fallback_results = self.get_cocktail_details(fallback_names)
+                return {
+                    'results': fallback_results,
+                    'full_ranked_names': fallback_names,
+                    'current_top_k': len(fallback_results)
+                }
         
         print(f"2단계 - 타겟 칵테일 결정: {target_cocktail}")
         
@@ -306,30 +311,40 @@ class C4Retrieval(BaseRetrieval):
                     print(f"     - {measure} {ingredient}")
             print()
         
-        # 3단계: 관계 기반 유사 칵테일 검색
-        similar_cocktails = self.relationship_based_search(target_cocktail)
-        print(f"3단계 - 관계 기반 검색: {len(similar_cocktails)}개 결과")
+        # 3단계: 관계 기반 유사 칵테일 검색 (전체 결과)
+        all_similar_cocktails = self.relationship_based_search(target_cocktail)
+        print(f"3단계 - 관계 기반 검색: {len(all_similar_cocktails)}개 결과")
         
-        # 4단계: 상위 결과 선택 (동적으로 업데이트된 값 사용)
+        # 전체 관계 기반 검색 결과를 이름 리스트로 변환 (유사도순으로 정렬됨)
+        all_similar_names = [item['name'] for item in all_similar_cocktails]
+        
+        # 4단계: 현재 라운드에 필요한 만큼만 선택
         final_top_k = self.config.get('final_top_k', self.c4_config['final_top_k'])
         print(f"🔧 최종 선정 개수: {final_top_k}개 (config: {self.config.get('final_top_k')}, c4_config: {self.c4_config['final_top_k']})")
-        final_cocktail_names = [item['name'] for item in similar_cocktails[:final_top_k]]
-        print(f"4단계 - 최종 선정: {len(final_cocktail_names)}개")
+        current_round_names = all_similar_names[:final_top_k]
+        print(f"4단계 - 최종 선정: {len(current_round_names)}개 (전체 관계 기반: {len(all_similar_names)}개)")
         
-        for i, item in enumerate(similar_cocktails[:final_top_k], 1):
+        for i, item in enumerate(all_similar_cocktails[:final_top_k], 1):
             shared_count = len(item['shared_ingredients'])
             print(f"   {i}. {item['name']} (공유재료: {shared_count}개)")
         
-        # 5단계: 상세 정보 가져오기
-        final_results = self.get_cocktail_details(final_cocktail_names)
-        print(f"5단계 - 관계 기반 검색 완료: {len(final_results)}개 결과")
+        # 5단계: 현재 라운드 상세 정보 가져오기
+        current_results = self.get_cocktail_details(current_round_names)
+        print(f"5단계 - C4 검색 완료: {len(current_results)}개 결과")
         
         # 타겟 칵테일 정보를 0번째로 추가
         if target_details:
             target_details[0]['is_target'] = True  # 타겟임을 표시
-            final_results = target_details + final_results
+            current_results = target_details + current_results
+            # 타겟 칵테일도 전체 리스트에 포함
+            all_similar_names = [target_cocktail] + all_similar_names
         
-        return final_results
+        # dict 형태로 반환 (캐싱을 위해)
+        return {
+            'results': current_results,
+            'full_ranked_names': all_similar_names,  # 전체 관계 기반 검색 결과 (타겟 포함)
+            'current_top_k': final_top_k
+        }
 
 
 
