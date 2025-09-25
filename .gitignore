@@ -61,6 +61,8 @@ venv.bak/
 # macOS
 .DS_Store
 
+# data
+embedding_cache.json
 
 # md
 c1-c4_retrieval_readme.md
