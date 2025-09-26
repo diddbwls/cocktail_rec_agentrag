@@ -63,6 +63,7 @@ venv.bak/
 
 # data
 embedding_cache.json
+image.zip
 
 # md
 c1-c4_retrieval_readme.md
