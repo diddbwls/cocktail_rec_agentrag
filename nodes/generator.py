@@ -8,7 +8,10 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
 from utils.openai_client import OpenAIClient
-from utils.prompt_loader import PromptLoader
+from prompts.c1_prompt import C1_PROMPT_TEMPLATE
+from prompts.c2_prompt import C2_PROMPT_TEMPLATE
+from prompts.c3_prompt import C3_PROMPT_TEMPLATE
+from prompts.c4_prompt import C4_PROMPT_TEMPLATE
 
 def format_system_analysis_info(task_type: str, task_confidence: float, task_reason: str,
                                final_best_round: int, final_best_score: float, 
@@ -96,7 +99,6 @@ def format_system_analysis_info(task_type: str, task_confidence: float, task_rea
 
 # OpenAI 클라이언트 초기화
 openai_client = OpenAIClient()
-prompt_loader = PromptLoader()
 
 def format_cocktails_for_response(cocktails: List[Dict[str, Any]]) -> str:
     """
@@ -171,8 +173,14 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
         최종 응답 텍스트
     """
     try:
-        # 태스크별 프롬프트 로드
-        task_prompt = prompt_loader.get_task_prompt(task_type)
+        # 태스크별 프롬프트 직접 사용 (응답 생성용)
+        task_prompts = {
+            "C1": C1_PROMPT_TEMPLATE,
+            "C2": C2_PROMPT_TEMPLATE,
+            "C3": C3_PROMPT_TEMPLATE,
+            "C4": C4_PROMPT_TEMPLATE
+        }
+        task_prompt = task_prompts.get(task_type, C1_PROMPT_TEMPLATE)
         
         # 디버깅: 태스크 프롬프트 확인
         print(f"🔍 태스크 프롬프트 확인 ({task_type}):")
@@ -183,7 +191,7 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
             # context가 어디에 위치하는지 확인
             context_pos = task_prompt.find('{context}')
             context_preview = task_prompt[max(0, context_pos-50):context_pos+100] if context_pos != -1 else "NOT_FOUND"
-            print(f"   - context 위치 주변: ...{context_preview}...")
+            print(f"   - context 위치 주변: ...{context_preview}")
         
         # 칵테일 정보 포맷팅
         cocktails_context = format_cocktails_for_response(cocktails)
@@ -195,7 +203,7 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
             cocktail_names = [c.get('name', 'Unknown') for c in cocktails]
             print(f"   - 칵테일 이름들: {cocktail_names}")
         print(f"   - 포맷된 컨텍스트 길이: {len(cocktails_context)} 글자")
-        print(f"   - 컨텍스트 미리보기 (처음 200자): {cocktails_context[:200]}...")
+        print(f"   - 컨텍스트 미리보기 (처음 200자): {cocktails_context}")
         
         # 평가 정보 포맷팅
         evaluation_text = ""

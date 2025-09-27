@@ -1,6 +1,5 @@
 from utils.types import PipelineState
 from utils.openai_client import OpenAIClient
-from utils.prompt_loader import PromptLoader
 import json
 import os
 from typing import Dict, Any
@@ -16,8 +15,6 @@ from prompts.task_classifier_prompt import TASK_CLASSIFIER_TEMPLATE
 # OpenAI 클라이언트 초기화
 openai_client = OpenAIClient()
 
-# PromptLoader 초기화 (폴백용)
-prompt_loader = PromptLoader()
 
 
 def query_classification(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -42,12 +39,8 @@ def query_classification(state: Dict[str, Any]) -> Dict[str, Any]:
         return state
     
     try:
-        # 태스크 분류 프롬프트 로드 (직접 임포트 사용)
-        try:
-            classifier_prompt = TASK_CLASSIFIER_TEMPLATE
-        except:
-            # 폴백: PromptLoader 사용
-            classifier_prompt = prompt_loader.get_classifier_prompt()
+        # 태스크 분류 프롬프트 직접 사용
+        classifier_prompt = TASK_CLASSIFIER_TEMPLATE
         
         # 프롬프트에 쿼리 삽입
         prompt = classifier_prompt.replace("{question}", query_text)

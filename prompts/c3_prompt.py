@@ -26,7 +26,7 @@ Extract the keywords from the user’s question for Multi-hop ingredient expansi
 → {{"ingredients": ["mint", "lime"], "cocktail_names": ["Mojito"]}}
 
 --------------------------------
-User Question: {user_question}
+User Question: {question}
 
 Reference Categories: {category_list}
 
@@ -42,6 +42,7 @@ Please respond strictly in the following JSON format:
 C3_SYSTEM_MESSAGE = "You are a recipe keyword extraction expert. Always respond with valid JSON only."
 
 C3_PROMPT_TEMPLATE = """
+**IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 You are an expert in cocktail networks based on multi-hop ingredient expansion.
 Please answer by considering the following cocktail recommendation guidelines and answer guidelines.
 
@@ -60,6 +61,7 @@ Please answer by considering the following cocktail recommendation guidelines an
 3. Systematically explain the ingredient relationships of cocktails discovered through multi-hop expansion.
 4. Clearly present the process and significance of discovering cocktails through ingredient networks.
 5. Provide detailed recipe information along with the reasoning behind ingredient expansion.
+6. **IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 
 Question: {question}
 

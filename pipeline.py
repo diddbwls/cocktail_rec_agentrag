@@ -94,7 +94,7 @@ def save_workflow_diagram():
         app = build_pipeline_graph().compile()
         
         # graph_viz 디렉토리 생성 (절대 경로 사용)
-        viz_dir = "/Users/yujin/Desktop/cocktail_rec_agentrag/langgraph/graph_viz"
+        viz_dir = "./langgraph/graph_viz"
         os.makedirs(viz_dir, exist_ok=True)
         
         # 다이어그램 생성 및 저장

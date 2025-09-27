@@ -4,8 +4,9 @@ import base64
 from typing import Dict, Any, Optional
 
 from utils.openai_client import OpenAIClient
-from utils.prompt_loader import PromptLoader
 from prompts.query_image_prompt import QUERY_IMAGE_PROMPT
+from utils.llm_model import get_llm
+from utils.config import LLM_MODEL
 
 
 # 상위 디렉토리의 모듈 임포트를 위한 경로 추가
@@ -17,8 +18,6 @@ sys.path.append(parent_dir)
 # OpenAI 클라이언트 초기화
 openai_client = OpenAIClient()
 
-# PromptLoader 초기화 (폴백용)
-prompt_loader = PromptLoader()
 
 def describe_image(image_path: str, prompt: Optional[str] = None) -> str:
     """
@@ -32,9 +31,6 @@ def describe_image(image_path: str, prompt: Optional[str] = None) -> str:
         이미지에 대한 설명 텍스트
     """
     try:
-        # 전역 OpenAI 클라이언트 사용
-        client = openai_client.client
-        
         # 프롬프트 설정
         if prompt is None:
             prompt = QUERY_IMAGE_PROMPT
@@ -58,26 +54,64 @@ def describe_image(image_path: str, prompt: Optional[str] = None) -> str:
         else:
             mime_type = "image/jpeg"  # 기본값
         
-        # GPT-4o-mini 호출
-        resp = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:{mime_type};base64,{image_b64}"
-                            }
-                        }
-                    ]
-                }
-            ]
-        )
+        # Check if current model supports vision
+        vision_models = ["Qwen/Qwen2.5-VL", "gpt-4o-mini"]
+        supports_vision = any(model in LLM_MODEL for model in vision_models)
         
-        return resp.choices[0].message.content
+        if supports_vision:
+            llm = get_llm(LLM_MODEL)
+            
+            # Handle different vision model types
+            if LLM_MODEL.startswith("Qwen/Qwen2.5-VL"):
+                # Local Qwen VL model
+                try:
+                    if hasattr(llm, 'generate_with_image'):
+                        return llm.generate_with_image(prompt, image_path)
+                    else:
+                        print(f"⚠️ Qwen VL model {LLM_MODEL} does not have generate_with_image method")
+                        fallback_prompt = f"{prompt}\n\n[Note: An image was provided but vision processing failed. Please provide a cocktail recommendation based on the text query.]"
+                        return llm.generate(prompt=fallback_prompt)
+                except Exception as vision_error:
+                    print(f"⚠️ Qwen VL vision processing failed: {vision_error}")
+                    fallback_prompt = f"{prompt}\n\n[Note: An image was provided but vision processing failed. Please provide a cocktail recommendation based on the text query.]"
+                    return llm.generate(prompt=fallback_prompt)
+                    
+            elif LLM_MODEL == "gpt-4o-mini":
+                # OpenAI gpt-4o-mini
+                try:
+                    if hasattr(llm, 'client'):
+                        resp = llm.client.chat.completions.create(
+                            model=LLM_MODEL,
+                            messages=[
+                                {
+                                    "role": "user",
+                                    "content": [
+                                        {"type": "text", "text": prompt},
+                                        {
+                                            "type": "image_url",
+                                            "image_url": {
+                                                "url": f"data:{mime_type};base64,{image_b64}"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        )
+                        return resp.choices[0].message.content
+                    else:
+                        print(f"⚠️ GPT model {LLM_MODEL} does not have client attribute")
+                        fallback_prompt = f"{prompt}\n\n[Note: An image was provided but vision processing failed. Please provide a cocktail recommendation based on the text query.]"
+                        return llm.generate(prompt=fallback_prompt)
+                except Exception as vision_error:
+                    print(f"⚠️ GPT vision processing failed: {vision_error}")
+                    fallback_prompt = f"{prompt}\n\n[Note: An image was provided but vision processing failed. Please provide a cocktail recommendation based on the text query.]"
+                    return llm.generate(prompt=fallback_prompt)
+        else:
+            # For non-vision models, use text-only mode
+            print(f"⚠️ Model {LLM_MODEL} does not support vision. Using text-only description.")
+            llm = get_llm()
+            fallback_prompt = f"{prompt}\n\n[Note: An image was provided but the current model does not support vision capabilities. Please provide a cocktail recommendation based on the text query.]"            
+            return llm.generate(prompt=fallback_prompt)
         
     except Exception as e:
         print(f"이미지 설명 생성 오류: {e}")

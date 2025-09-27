@@ -36,7 +36,7 @@ Extract the target information from the user’s question for cocktail similarit
 → {{"target_cocktail": "Old Fashioned", "ingredients": []}}
 
 --------------------------------
-User Question: {user_question}
+User Question: {question}
 
 Reference Categories: {category_list}
 
@@ -52,6 +52,7 @@ Please respond strictly in the following JSON format:
 C4_SYSTEM_MESSAGE = "You are a cocktail similarity expert. Always respond with valid JSON only."
 
 C4_PROMPT_TEMPLATE = """
+**IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 You are an expert in cocktail similarity and alternative recommendations.
 Please answer by considering the following cocktail recommendation guidelines and answer guidelines.
 
@@ -67,6 +68,7 @@ Please answer by considering the following cocktail recommendation guidelines an
 2. Do not guess information that is not in the search results.
 3. Clearly explain the similarities and differences with the target cocktail.
 4. Mention ingredient overlap and recipe complexity when explaining the reason for recommendations.
+5. **IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 
 Question: {question}
 

@@ -1,84 +1,56 @@
-import openai
-from typing import Optional, List, Dict, Any
 import json
-import os
+from typing import Optional, Dict, Any
 from dotenv import load_dotenv
+from utils.llm_model import get_llm
+from utils.config import LLM_MODEL
 
 load_dotenv()
 
 class OpenAIClient:
-    def __init__(self, model: str = "gpt-4o-mini", temperature: float = 0):
-        self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        self.model = model
+    """
+    Wrapper class for LLM operations
+    This class now uses the new LLM system that supports multiple models
+    """
+    def __init__(self, model: Optional[str] = None, temperature: float = 0):
+        """
+        Initialize OpenAIClient
+        
+        Args:
+            model: Model name override (if None, uses config.LLM_MODEL)
+            temperature: Temperature for generation
+        """
+        self.model = model or LLM_MODEL
         self.temperature = temperature
+        self.llm = get_llm(self.model)
         
     def generate(self, prompt: str, max_tokens: Optional[int] = None, response_format: Optional[str] = None) -> str:
         """
-        Generate text using OpenAI API
+        Generate text using LLM
         
         Args:
             prompt: Input prompt
             max_tokens: Maximum tokens to generate
-            response_format: "json" for JSON response format
+            response_format: "json" for JSON response format (note: not all models support this)
             
         Returns:
             Generated text response
         """
         try:
-            messages = [{"role": "user", "content": prompt}]
-            
-            kwargs = {
-                "model": self.model,
-                "messages": messages,
-                "temperature": self.temperature
-            }
-            
-            if max_tokens:
-                kwargs["max_tokens"] = max_tokens
-                
+            # Add JSON instruction to prompt if requested
             if response_format == "json":
-                kwargs["response_format"] = {"type": "json_object"}
+                prompt = f"{prompt}\n\nRespond only with valid JSON."
             
-            response = self.client.chat.completions.create(**kwargs)
-            return response.choices[0].message.content
+            response = self.llm.generate(
+                prompt=prompt,
+                max_tokens=max_tokens,
+                temperature=self.temperature
+            )
+            return response
             
         except Exception as e:
-            print(f"OpenAI API 호출 오류: {e}")
+            print(f"LLM API 호출 오류: {e}")
             raise e
     
-    def generate_with_system(self, system_prompt: str, user_prompt: str, max_tokens: Optional[int] = None) -> str:
-        """
-        Generate text with system prompt
-        
-        Args:
-            system_prompt: System message
-            user_prompt: User message
-            max_tokens: Maximum tokens to generate
-            
-        Returns:
-            Generated text response
-        """
-        try:
-            messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ]
-            
-            kwargs = {
-                "model": self.model,
-                "messages": messages,
-                "temperature": self.temperature
-            }
-            
-            if max_tokens:
-                kwargs["max_tokens"] = max_tokens
-            
-            response = self.client.chat.completions.create(**kwargs)
-            return response.choices[0].message.content
-            
-        except Exception as e:
-            print(f"OpenAI API 호출 오류: {e}")
-            raise e
     
     def parse_json_response(self, response: str) -> Dict[str, Any]:
         """

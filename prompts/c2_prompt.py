@@ -41,7 +41,7 @@ Please classify the keywords according to the following guidelines, classificati
 → {{"cocktail": ["Negroni"], "include_ingredients": ["orange"], "exclude_ingredients": [], "glassType": [], "category": []}}
 
 --------------------------------
-User Question: "{user_question}"
+User Question: "{question}"
 
 Categories: {category_list}
 
@@ -61,6 +61,7 @@ Please classify strictly in the following JSON format:
 C2_SYSTEM_MESSAGE = "You are a keyword extraction expert for cocktail search. ONLY extract directly mentioned cocktail names, ingredients, glass types, and categories. Never infer or guess cocktail names from descriptions, colors, or characteristics. Always respond with valid JSON only."
 
 C2_PROMPT_TEMPLATE = """
+**IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 You are an expert in matching glass types and ingredients.
 Please answer by considering the following cocktail recommendation guidelines and answer guidelines.
 
@@ -75,6 +76,7 @@ Please answer by considering the following cocktail recommendation guidelines an
 2. Do not guess information that is not in the search results.
 3. Focus on the relationship between glass type and ingredient combinations.
 4. Systematically organize the results of level-based ingredient matching.
+5. **IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 
 Question: {question}
 

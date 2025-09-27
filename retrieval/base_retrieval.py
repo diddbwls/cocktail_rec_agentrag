@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from typing import List, Dict, Any
 import numpy as np
 from abc import ABC, abstractmethod
+from utils.llm_model import get_llm
 
 # Load environment variables
 load_dotenv()
@@ -34,6 +35,9 @@ class BaseRetrieval(ABC):
         self.driver = GraphDatabase.driver(neo4j_uri, auth=(neo4j_user, neo4j_password))
         openai.api_key = openai_api_key
         self.embedding_dimension = self._determine_embedding_dimension()
+        
+        # Initialize LLM
+        self.llm = get_llm()
         
         # Cache for categories
         self.categories_cache = None
@@ -89,7 +93,7 @@ class BaseRetrieval(ABC):
         
         try:
             prompt = self.task_config['keyword_extraction_prompt'].format(
-                user_question=user_question,
+                question=user_question,
                 category_list=category_list
             )
         except KeyError as e:
@@ -100,16 +104,14 @@ class BaseRetrieval(ABC):
         try:
             system_message = self.task_config.get('system_message', "You are a keyword extraction expert. Always respond with valid JSON only.")
             
-            response = openai.chat.completions.create(
-                model=self.config['model'],
-                messages=[
-                    {"role": "system", "content": system_message},
-                    {"role": "user", "content": prompt}
-                ],
+            # Use the new LLM interface
+            response_text = self.llm.generate(
+                prompt=prompt,
+                system_prompt=system_message,
                 temperature=self.config['temperature']
             )
             
-            result = json.loads(response.choices[0].message.content)
+            result = json.loads(response_text)
             return result
             
         except Exception as e:

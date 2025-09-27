@@ -8,6 +8,7 @@ from typing import List, Dict
 import time
 from dotenv import load_dotenv
 from tqdm import tqdm
+from utils.config import get_config
 
 # Load environment variables
 load_dotenv()
@@ -20,7 +21,7 @@ class CocktailGraphBuilder:
         if use_python_config:
             # Python 설정 사용
             try:
-                from config import get_config
+                from utils.config import get_config
                 self.config = get_config()
                 print("✅ Python 설정 모듈 사용")
             except ImportError:
@@ -533,7 +534,7 @@ if __name__ == "__main__":
     
     try:
         # Build the graph (벡터 인덱스 생성하지 않음 - 원래 방식)
-        builder.build_graph("cocktail_data_436_final.csv", create_vector_indices=False)
+        builder.build_graph("./data/cocktail_data_436_final.csv", create_vector_indices=False)
         
         # Verify the graph
         builder.verify_graph()

@@ -1,0 +1,201 @@
+﻿Task,Index,image,query_KO,query_EN,fileNumber,imageCocktailName
+C1,1,1,"빨간색 계열 칵테일로 보이고, 체리 가니시가 있어. 이와 비슷한 레드 톤 칵테일 찾아줘.",Looks like a red cocktail with a cherry garnish. Find similar red-tone cocktails.,c1-1,Cherry Martini
+C1,2,1,파란색 하이볼 글라스 음료처럼 보여. 보드카는 제외하고 추천해줘.,Appears to be a blue drink in a highball glass. Recommend options excluding vodka.,c1-2,Blue Lagoon
+C1,3,1,금빛(골든) 색의 위스키 베이스로 보이는 칵테일이야. 비슷한 색감 추천해줘.,A golden-colored cocktail that seems whiskey-based. Suggest similar color matches.,c1-3,Whiskey Sour
+C1,4,1,"초록색이며 민트 잎 가니시가 보이는데, 사워 계열과 비슷한 후보 찾아줘.",Green drink with mint garnish. find candidates similar to the sour family.,c1-4,Grasshopper
+C1,5,1,"보라색 칵테일처럼 보이고 쿠페 글라스야. 진은 포함, 토닉은 제외해서 찾아줘.",Purple cocktail in a coupe glass. Include gin but exclude tonic.,c1-5,Aviation
+C1,6,1,분홍색에 레몬 필 가니시가 보이는 마티니 글라스야. 네그로니와는 다른 계열로 추천해줘.,Pink drink with a lemon peel in a martini glass. Recommend options not in the Negroni family.,c1-6,Cosmopolitan
+C1,7,1,노란색 투명도가 높은 칵테일이고 록스 글라스야. 럼은 빼고 후보를 제시해줘.,"Yellow, high-clarity cocktail in a rocks glass. Exclude rum and propose candidates.",c1-7,Gold Rush
+C1,8,1,검은색(다크 브라운) 톤의 칵테일이고 올드 패션드 글라스야. 비터 사용 여부 기준으로 비슷한 것 추천해줘.,Dark/black-brown cocktail in an Old Fashioned glass. Find similar ones with bitters usage as a criterion.,c1-8,Old Fashioned
+C1,9,1,흰색(화이트) 크리미 텍스처고 밀크/플로트/셰이크 카테고리 내 유사 후보를 추천해줘.,White creamy texture. recommend similar items within the Milk / Float / Shake category.,c1-9,Brandy Alexander
+C1,10,1,갈색(브라운) 위스키 향으로 보이고 큰 얼음이 들어 있어. Ordinary Drink 카테고리에서 가까운 후보를 제안해줘.,"Brown, whiskey-leaning with a large ice cube. Suggest close matches from the Ordinary Drink category.",c1-10,Old Fashioned
+C1,11,1,"주황색에 오렌지 슬라이스 가니시, 하이볼 글라스야. 탄산감 있는 Cocktail 카테고리만 추천해줘.",Orange with an orange slice in a highball glass. Only carbonated options within the Cocktail category.,c1-11,Tequila Sunrise
+C1,12,1,투명한 무색 칵테일이고 마티니 글라스에 올리브 가니시야. 보드카 없이 진 베이스로 찾아줘.,"Clear colorless cocktail in a martini glass with an olive garnish. Gin-based only, no vodka.",c1-12,Gin Martini
+C1,13,1,파스텔 핑크에 에그화이트 폼이 있어. 알레르기 고려해서 에그화이트 제외한 유사 대안을 제안해줘.,Pastel pink with egg-white foam. Provide similar alternatives excluding egg white (allergy-safe).,c1-13,Pink Lady
+C1,14,1,연두색이고 허리케인 글라스야. 트로피컬 느낌이지만 코코넛은 제외해줘.,Light-green in a hurricane glass. Tropical vibe but exclude coconut.,c1-14,Green Hawaiian
+C1,15,1,금빛 스파클링이 보이고 플루트 글라스야. 샷(Shot) 카테고리는 제외하고 추천해줘.,Golden and sparkling in a flute. Recommend while excluding the Shot category.,c1-15,Mimosa
+C1,16,1,브라운 톤에 커피/티 노트가 추정돼. Coffee / Tea 카테고리 내 유사 후보를 찾아줘.,Brown tone with coffee/tea notes. Find matches in the Coffee / Tea category.,c1-16,Irish Coffee
+C1,17,1,"하늘색 티키 머그야. 파인애플 포함, 럼 포함, 테킬라는 제외해서 찾아줘.",Sky-blue in a tiki mug. Include pineapple and rum. exclude tequila.,c1-17,Blue Hawaii
+C1,18,1,노란색 투명도가 높고 콜린스 글라스야. 진은 포함하고 시럽은 적게(낮은 당도)인 후보를 추천해줘.,"Bright yellow, high clarity in a Collins glass. Include gin. prefer low-sweetness options (less syrup).",c1-18,Gin Fizz
+C1,19,1,이 사진처럼 근사해 보이는 빨간 칵테일 뭐 있어?,What are some fancy-looking red cocktails like this photo?,c1-19,Cosmopolitan
+C1,20,1,이렇게 생긴 음료 뭐야?,What kind of drink looks like this?,c1-20,Long Island Iced Tea
+C1,21,1,민트 들어간 초록색 칵테일 마시고 싶은데 뭐가 좋을까?,"I want to drink a green cocktail with mint, what would be good?",c1-21,Mojito
+C1,22,1,분홍색이고 예쁘게 보이는 칵테일 뭐 있어?,What are some pretty pink cocktails?,c1-22,Negroni
+C1,23,1,이렇게 여름 느낌 나는 노란색 칵테일 뭐 있어?,What are some summery yellow cocktails like this?,c1-23,Pina Colada
+C1,24,1,이렇게 레이어드되고 알록달록한 칵테일 보여줘.,Show me some layered and colorful cocktails like this.,c1-24,B-52
+C1,25,1,이렇게 파티에서 돋보일 보라색 음료 있어?,Are there any purple drinks that would stand out at a party like this?,c1-25,Aviation
+C1,26,1,이렇게 시트러스 들어간 투명하고 반짝이는 칵테일 뭐 있어?,"What are some clear, sparkling cocktails with citrus like this?",c1-26,Gin Fizz
+C1,27,1,여름에 어울리는 초록-노랑 느낌 칵테일 필요해.,I need a green-and-yellow vibe drink for summer.,c1-27,Mojito
+C1,28,1,석양처럼 보이는 칵테일 뭐 있어?,Which cocktail looks like a sunset?,c1-28,Rum Sunset
+C1,29,1,반짝이는 황금빛 위스키 칵테일 알려줘.,Any golden whiskey cocktails that shine?,c1-29,Seelbach
+C1,30,1,오렌지색이고 트로피컬한 느낌 나는 칵테일 뭐 있어?,Give me something orange and tropical-looking.,c1-30,Hurricane
+C1,31,1,루비빛 빨간 칵테일은 뭐가 있을까?,What cocktail has that ruby red look?,c1-31,Godfather
+C1,32,1,밝은 분홍색에 탄산감 있는 칵테일 추천해줘,I’m in the mood for something bright pink and fizzy.,c1-32,Pink Spritzer
+C1,33,1,시각적으로 멋진 레이어드 칵테일 추천해줘.,Show me a visually stunning layered cocktail.,c1-33,Rainbow Shot
+C1,34,1,진한 갈색에 위스키 향 강한 칵테일 뭐 있어?,What’s a dark brown cocktail with strong whiskey vibes?,c1-34,Manhattan
+C1,35,1,수정처럼 맑은 칵테일 있어?,Got a cocktail that’s clear like crystal?,c1-35,Gin Tonic
+C1,36,0,"‘붉은색, 체리 가니시, 마티니 글라스’ 조건으로 유사 칵테일을 추천해줘.","Recommend cocktails matching ‘red color, cherry garnish, martini glass’.",,
+C1,37,0,‘Manhattan과 비슷한 레드 톤’이지만 베르무트는 제외해줘.,"Similar to ‘Manhattan’ with a red tone, but exclude vermouth.",,
+C1,38,0,‘파란색 하이볼’이며 보드카 없이 진을 포함해서 찾아줘.,"‘Blue highball,’ include gin and exclude vodka.",,
+C1,39,0,"‘금빛, 위스키 베이스, 록스 글라스’ 조건으로 Ordinary Drink 카테고리 후보를 제시해줘.","Candidates in the Ordinary Drink category for ‘golden, whiskey-based, rocks glass’.",,
+C1,40,0,"‘초록색 사워 계열’에 민트 포함, 토닉 제외 조건으로 추천해줘.","‘Green sour family,’ include mint and exclude tonic.",,
+C1,41,0,‘보라색 쿠페 글라스’인데 코코아/밀크 계열은 제외해줘.,"‘Purple in a coupe glass,’ excluding Cocoa and Milk / Float / Shake categories.",,
+C1,42,0,"‘투명한 화이트, 올리브 가니시, 마티니 글라스’로 보드카는 제외하고 진 베이스만 찾아줘.","‘Clear white, olive garnish, martini glass,’ exclude vodka and keep gin-based only.",,
+C1,43,0,석양 그라데이션 색감의 칵테일 뭐 있어?,Any drink with a sunset gradient color?,,
+C1,44,0,에메랄드 그린 색감의 칵테일은 뭐가 있을까?,What’s a cocktail with an emerald green tone?,,
+C1,45,0,"우유빛 흰색 칵테일, 코코넛 들어간 거 마시고 싶은데 뭐 있어?","I want a milky white cocktail, maybe with coconut.",,
+C1,46,0,반짝이는 황금빛 칵테일 뭐가 있을까?,Which cocktail has a shiny golden appearance?,,
+C1,47,0,얼음처럼 시원하고 상쾌해 보이는 칵테일 있어?,Any cocktail that looks icy and refreshing?,,
+C1,48,0,무지개색 칵테일 한 번 마셔보고 싶은데 뭐 있어?,Got a rainbow-colored cocktail I can try?,,
+C1,49,0,진한 보라색 느낌의 칵테일 뭐 있어?,What’s a cocktail with dark purple vibes?,,
+C1,50,0,사진 찍으면 예쁘게 나오는 시각적으로 매력적인 칵테일 뭐 있어?,Give me a visually appealing drink that pops in photos.,,
+C2,1,1,"이 칵테일과 같은 martini glass에서 마실 수 있는, gin 포함·vodka 제외 후보를 추천해줘.",Please recommend martini-glass cocktails including gin and excluding vodka similar to this one.,c2-1,Appletini
+C2,2,1,"사진 속과 같은 highball glass 기준으로, rum과 lime 포함 레시피만 찾아줘.",Please find highball glass cocktails that include rum and lime like the photo.,c2-2,Cuba Libre
+C2,3,1,rocks glass로 제공하는 칵테일 중 whiskey 없이 만들 수 있는 대안을 추천해줘.,Please recommend rocks glass alternatives that can be made without whiskey.,c2-3,Rusty Nail
+C2,4,1,이 칵테일과 비슷한 coupe glass 칵테일 중 tequila 포함·triple sec 제외 옵션을 찾아줘.,Please find coupe glass options including tequila and excluding triple sec similar to this.,c2-4,Daiquiri
+C2,5,1,collins glass 기준으로 gin + soda + lemon 조합을 충족하는 후보만 제시해줘.,Please present collins glass candidates that satisfy gin + soda + lemon.,c2-5,Paloma
+C2,6,1,old fashioned glass(rocks) 형식에서 bitters 포함·syrup 적게인 레시피를 추천해줘.,Please recommend old fashioned/rocks glass recipes with bitters and low syrup.,c2-6,Boulevardier
+C2,7,1,flute glass로 제공 가능한 sparkling wine 포함·orange 제외 칵테일을 찾아줘.,Please find flute glass cocktails including sparkling wine and excluding orange.,c2-7,Bellini
+C2,8,1,hurricane glass 기준으로 rum + pineapple 포함·coconut 제외 후보를 추천해줘.,"Please recommend hurricane glass options including rum and pineapple, excluding coconut.",c2-8,pina colada
+C2,9,1,margarita glass에서 마시는 칵테일 중 tequila + lime 포함·salt rim 필수 조건을 충족하는 것을 찾아줘.,Please find margarita glass cocktails including tequila and lime with a required salt rim.,c2-9,Margarita
+C2,10,1,snifter 형태에 어울리는 brandy 포함·coffee liqueur 제외 레시피를 추천해줘.,Please recommend snifter-suited recipes including brandy and excluding coffee liqueur.,c2-10,Stinger
+C2,11,1,irish coffee glass 기준으로 coffee + whiskey 포함·cream optional 조건의 칵테일을 찾아줘.,Please find Irish coffee glass cocktails including coffee and whiskey with optional cream.,c2-11,Irish Coffee
+C2,12,1,pilsner glass에서 제공 가능하며 beer 기반 + lemon garnish 포함 옵션만 골라줘.,Please select pilsner glass options beer-based with a lemon garnish.,c2-12,Red Eye
+C2,13,1,wine glass 스타일로 제공되는 aperol 포함·grapefruit 제외 칵테일을 제안해줘.,Please propose wine-glass cocktails including Aperol and excluding grapefruit.,c2-13,Sangria
+C2,14,1,shot glass 기준으로 vodka + coffee liqueur 포함·cream 제외 쇼트를 추천해줘.,"Please recommend shot glass recipes including vodka and coffee liqueur, excluding cream.",c2-14,Mexican Flag
+C2,15,1,martini glass에서 마시는 Martini 스타일이면서 olive 포함·onion 제외 버전을 찾아줘.,"Please find martini-glass, Martini-style versions with olive and without onion.",c2-15,Dirty Martini
+C2,16,1,rocks glass로 제공되는 Negroni 스타일 중 orange 포함·soda 제외 레시피를 추천해줘.,"Please recommend rocks-glass, Negroni-style recipes including orange and excluding soda.",c2-16,Negroni
+C2,17,1,highball glass 기준 Mojito 계열에서 mint + lime 포함·bitters 제외 후보를 찾아줘.,"Please find highball-glass, Mojito-family candidates including mint and lime, excluding bitters.",c2-17,Mango Mojito
+C2,18,1,coupe glass로 제공 가능한 Daiquiri 스타일 중 rum + lime 포함·simple syrup 적게 옵션을 골라줘.,"Please pick coupe-glass, Daiquiri-style options including rum and lime with low simple syrup.",c2-18,Hemingway Daiquiri
+C2,19,1,진토닉이 하이볼 잔에 나오는 칵테일 뭐 있어?,What cocktails come in a highball glass with gin and tonic?,c2-19,Gin Rickey
+C2,20,1,마티니 잔에 나오는 보드카 칵테일 추천해줘.,Recommend me a vodka cocktail in a martini glass.,c2-20,Lemon Drop Martini
+C2,21,1,위스키 칵테일 중에 록 글라스에 나오는 건 뭐야?,Which whiskey cocktails are usually in a rocks glass?,c2-21,Negroni
+C2,22,1,샴페인 플루트 잔에 오렌지 주스 들어간 칵테일 뭐 있어?,What’s a cocktail in a champagne flute with orange juice?,c2-22,Mimosa
+C2,23,1,진 들어간 콜린스 글라스 칵테일 있어?,Any Collins glass cocktails with gin?,c2-23,Gin Buck
+C2,24,1,쿠페 글라스에 예쁘게 나오는 칵테일 뭐야?,What cocktail looks nice in a coupe glass?,c2-24,Daiquiri
+C2,25,1,메이슨자에 캐주얼하게 나오는 거 있어?,Got something casual that’s served in a mason jar?,c2-25,Fruit Punch
+C2,26,1,이 잔에 나오는 트로피컬 칵테일 뭐 있지?,What tropical cocktails are served in this glass?,c2-26,Zombie
+C2,27,1,이 잔에 보드카 + 크랜베리 들어가는 칵테일 있어?,Is there a cocktail with vodka + cranberry served in this glass?,c2-27,Tom Collins
+C2,28,1,이 잔에 나오는 스파클링 칵테일 뭐 있어?,What sparkling cocktails are served in this glass?,c2-28,Dirty Shirley
+C2,29,1,라임 주스 들어가는 마가리타 글라스 칵테일 있어?,Are there margarita glass cocktails with lime juice?,c2-29,Frozen Berry Margarita
+C2,30,1,이 샷 글라스에 나오는 레이어드 샷 뭐야?,What are layered shots served in this shot glass?,c2-30,B-25
+C2,31,1,텀블러 잔에 나오는 럼콕 있어?,Is there a rum and coke served in a tumbler glass?,c2-31,Whiskey Sour
+C2,32,1,허리케인 글라스에 어울리는 이 칵테일 뭐야?,What cocktail suits this hurricane glass?,c2-32,pina colada
+C2,33,1,올드 패션드 글라스에 나오는 도수 높은 위스키 칵테일 뭐 있어?,What strong whiskey cocktails are served in an old fashioned glass?,c2-33,Old Fashioned
+C2,34,1,이것 처럼 쿠페 잔에 우아하게 나오는 칵테일 더 추천해줄래?,Can you recommend more elegant cocktails served in a coupe glass like this?,c2-34,Jack Rose
+C2,35,1,이렇게 파인트 글라스에 나오는 맥주 칵테일에는 뭐가 있어?,What beer cocktails are served in a pint glass like this?,c2-35,Bloody Mary
+C2,36,0,martini glass에서 마실 칵테일로 gin 포함·vermouth dry 스타일 후보를 추천해줘.,Please recommend martini-glass cocktails including gin with a dry vermouth style.,,
+C2,37,0,highball glass 기준 whiskey + ginger ale 포함·lime optional 레시피를 찾아줘.,Please find highball glass recipes including whiskey and ginger ale with optional lime.,,
+C2,38,0,rocks glass에서 마시는 칵테일 중 tequila 제외·grapefruit 포함 조건을 충족하는 대안을 제시해줘.,Please present rocks-glass alternatives excluding tequila and including grapefruit.,,
+C2,39,0,cocktail glass 기준 vodka + cranberry 포함·orange juice 제외 칵테일을 추천해줘.,Please recommend cocktail-glass drinks including vodka and cranberry while excluding orange juice.,,
+C2,40,0,collins glass 레시피 중 gin + soda + cucumber 포함·syrup 제외 옵션을 찾아줘.,"Please find collins-glass recipes including gin, soda, and cucumber while excluding syrup.",,
+C2,41,0,coupe glass에 어울리는 whiskey 제외·lemon 포함 칵테일을 추천해줘.,Please recommend coupe-glass cocktails excluding whiskey and including lemon.,,
+C2,42,0,margarita glass에서 마실 tequila + triple sec + lime 포함·salt rim 필수 칵테일을 찾아줘.,"Please find margarita-glass cocktails including tequila, triple sec, and lime with a required salt rim.",,
+C2,43,0,브랜디 칵테일 중에 스니프터 글라스에 나오는 건 뭐 있어?,Which brandy cocktails come in a snifter glass?,,
+C2,44,0,콜린스 글라스에 나오는 과일향 나는 칵테일 보여줘.,Show me something fruity in a collins glass.,,
+C2,45,0,마티니 글라스에 가장 잘 어울리는 진 칵테일 뭐야?,What gin cocktails fit a martini glass best?,,
+C2,46,0,칵테일 글라스에 나오는 보드카 기반 칵테일 있어?,Any vodka-based cocktails in a cocktail glass?,,
+C2,47,0,마가리타 글라스에 알록달록한 칵테일 있어?,Got something colorful in a margarita glass?,,
+C2,48,0,샴페인 플루트에 어울리는 시트러스 칵테일 뭐 있어?,What citrus cocktail works in a champagne flute?,,
+C2,49,0,메이슨자에 캐주얼하게 나오는 칵테일 있나?,Any casual cocktails served in a mason jar?,,
+C2,50,0,쿠페 글라스에 보통 나오는 칵테일 뭐야?,What cocktails are usually served in a coupe?,,
+C3,1,1,민트 잎과 라임 웨지가 보이는 칵테일이야. mint와 lime에서 시작해 공통 재료를 확장해 유사 칵테일을 찾아줘.,"I see mint leaves and a lime wedge. start from mint and lime, expand via shared ingredients, and find related cocktails.",c3-1,Mojito
+C3,2,1,투명한 진 베이스처럼 보여. gin으로 시작해 자주 같이 쓰이는 재료를 추출하고 연관 칵테일을 확장해줘.,"It looks like a clear gin base. start from gin, extract commonly paired ingredients, and expand to related cocktails.",c3-2,gin tonic
+C3,3,1,다이키리 느낌의 라임 주스와 럼이 떠올라. rum과 lime을 씨드로 공통 재료를 모아 새로운 칵테일을 제안해줘.,"It evokes rum and lime like a Daiquiri. use rum and lime as seeds, gather common ingredients, and suggest new cocktails.",c3-3,classic daiquiri
+C3,4,1,다크 럼과 파인애플 주스로 보이는 트로피컬이야. dark rum과 pineapple에서 시작해 확장 검색해줘.,A tropical mix with dark rum and pineapple. start from dark rum and pineapple and run an expansion search.,c3-4,mai tai
+C3,5,1,올드 패션드 계열처럼 비터와 설탕이 보이는 것 같아. bitters와 sugar로 시작해 공통 재료를 통해 변주를 찾아줘.,Looks Old Fashioned-like with bitters and sugar. start from bitters and sugar and find variations via shared ingredients.,c3-5,Old Fashioned
+C3,6,1,토마토 주스와 셀러리 가니시가 보여. tomato와 celery로 시작해 공통 재료를 모아 유사 칵테일을 확장해줘.,"Tomato juice with celery garnish. use tomato and celery as seeds, aggregate common ingredients, and expand to similar cocktails.",c3-6,Bloody Mary
+C3,7,1,에스프레소 폼이 보이는 커피 칵테일 같아. coffee와 vodka를 시작점으로 재료 네트워크를 확장해줘.,Looks like a coffee cocktail with espresso foam. start from coffee and vodka and expand the ingredient network.,c3-7,Espresso Martini
+C3,8,1,오렌지 필과 버번이 연상돼. bourbon과 orange를 씨드로 공통 재료를 찾고 유사군을 추천해줘.,"Orange peel with a bourbon vibe. seed with bourbon and orange, surface shared ingredients, and recommend relatives.",c3-8,Old Fashioned
+C3,9,1,코코넛 크리미 텍스처와 파인애플 느낌이야. coconut과 pineapple에서 시작해 확장 결과를 보여줘.,Coconut-creamy with pineapple notes. start from coconut and pineapple and show expanded results.,c3-9,Pina Colada
+C3,10,1,진저 에일 탄산이 느껴져. ginger ale과 whiskey를 시작점으로 공통 재료로 이어지는 칵테일을 찾아줘.,Feels carbonated with ginger ale. start from ginger ale and whiskey and find cocktails connected via common ingredients.,c3-10,Whiskey Highball
+C3,11,1,카시스 계열의 보라색 느낌이야. crème de cassis에서 출발해 함께 쓰이는 재료로 확장해줘.,Purple hue suggesting crème de cassis. start from crème de cassis and expand via frequently co-used ingredients.,c3-11,Kir Royal
+C3,12,1,민트와 소다 거품이 보이는 하이볼이야. mint와 soda를 기반으로 공통 재료를 추출해 확장 추천해줘.,"Highball with mint and soda foam. base on mint and soda, extract shared ingredients, and expand recommendations.",c3-12,Southside Fizz
+C3,13,1,마라스키노 체리와 위스키가 보이네. maraschino cherry와 whiskey로 시작해 유사 칵테일을 확장해줘.,I spot a maraschino cherry with whiskey. start from maraschino cherry and whiskey and expand to similar cocktails.,c3-13,Manhattan
+C3,14,1,블루 큐라소 톤이야. blue curaçao를 씨드로 자주 함께 쓰이는 스피릿·주스 조합으로 확장해줘.,Blue curaçao tone. seed with blue curaçao and expand to commonly paired spirits and juices.,c3-14,Blue Margarita
+C3,15,1,베르무트가 들어간 스터드 칵테일 같아. vermouth와 gin을 시작점으로 공통 재료 기반 확장을 해줘.,Looks like a stirred vermouth cocktail. start from vermouth and gin and expand via shared ingredients.,c3-15,Negroni
+C3,16,1,라즈베리 향과 레몬 주스가 연상돼. raspberry와 lemon을 씨드로 추천해줘,I imagine raspberry flavor and lemon juice. Please recommend cocktails using raspberry and lemon as seeds.,c3-16,Clover Club
+C3,17,1,스파이스드 럼과 진저가 느껴져. spiced rum과 ginger를 시작으로 공통 재료를 통해 후보를 늘려줘.,Spiced rum with ginger. start from spiced rum and ginger and broaden candidates via shared ingredients.,c3-17,Dark ’n’ Stormy
+C3,18,1,메스칼 스모키 향이야. mezcal을 씨드로 agave·citrus 공통축을 따라 관련 칵테일을 확장해줘.,Smoky mezcal note. seed with mezcal and expand along the agave/citrus common axis.,c3-18,Mezcal Margarita
+C3,19,1,보드카랑 크랜베리 주스만 있는데 사진같은 칵테일 추천해줘 ,"I only have vodka and cranberry juice, can you recommend a cocktail like the one in the photo?",c3-19,Cape Cod
+C3,20,1,"이 칵테일을 만들 수 있는 위스키랑 베르무트가 있는데, 다른 괜찮은 칵테일 추천해줘","I’ve got whiskey and vermouth at home, what cocktail could that turn into?",c3-20,Rob roy
+C3,21,1,이거랑 럼이랑 라임 섞으면 나올 수 있는 음료가 나올까?,Would a drink come out if I mix this with rum and lime?,c3-21,Caipirinha
+C3,22,1,테킬라랑 오렌지 주스같아. 이 조합으로 만들 수 있는 칵테일 있을까?,It looks like tequila and orange juice. Is there a cocktail that uses this combination?,c3-22,Tequila Sunrise
+C3,23,1,"진과 토닉워터로 보이는데, 이걸로 만들 수 있는 음료 뭐가 있을까?","It looks like gin and tonic water, what kind of drink can be made with this?",c3-23,Gin Tonic
+C3,24,1,"럼이랑 파인애플 주스로 보이는데, 이 조합 같이 쓰는 칵테일 뭐 있어?","It looks like rum and pineapple juice, what cocktails use this combination?",c3-24,Malibu Pineapple
+C3,25,1,보드카랑 커피 리큐어만으로도 만들 수 있는 게 있을까?,Can I make something with just vodka and coffee liqueur?,c3-25,White Russian
+C3,26,1,버번과 비터스만 있어도 칵테일이 될까?,"I’ve got bourbon and bitters, is that enough for a cocktail?",c3-26,Old Fashioned
+C3,27,1,"진, 레몬, 설탕 조금 들어 갈거 같은데 이 조합으로 뭐 만들 수 있을까?","With gin, lemon, and a little sugar, what can I make with this combination?",c3-27,Gin Sour
+C3,28,1,위스키랑 진저에일 들어가는거 같은데 이걸로 만들 수 있는 음료가 있을까?,"It looks like whiskey and ginger ale, is there a drink that can be made with this?",c3-28,Whiskey Highball
+C3,29,1,이렇게 보드카랑 토마토 주스를 칵테일로 활용하려면 어떻게 해야 하지?,"If I want to use vodka and tomato juice as a cocktail, how should I do it?",c3-29,Bloody Mary
+C3,30,1,이렇게 테킬라랑 라임 주스를 쓰는 칵테일 뭐가 있을까?,What cocktails use tequila and lime juice like this?,c3-30,Frozen Margarita
+C3,31,1,이렇게 럼이랑 코코넛 크림 같이 쓰는 칵테일 어떻게 될까?,What happens if rum and coconut cream are used together like this?,c3-31,Coco Loco
+C3,32,1,이렇게 진과 오렌지 주스로 제대로 된 칵테일 만들 수 있을까?,Can I make a proper cocktail with gin and orange juice like this?,c3-32,Orange Blossom
+C3,33,1,이렇게 보드카랑 소다수만 있어도 칵테일이 될까?,Would vodka and soda water alone make a cocktail?,c3-33,Vodka Soda
+C3,34,1,이렇게 위스키랑 스위트 베르무트 들어가는 칵테일 뭐가 있을까?,What cocktails include whiskey and sweet vermouth like this?,c3-34,Manhattan
+C3,35,1,이렇게 럼이랑 민트로 상큼한 음료 만들려면 어떻게 해야 해?,How can I make a refreshing drink with rum and mint like this?,c3-35,Mint Daiquiri
+C3,36,0,브랜디랑 레몬 주스를 쓰는 레시피 뭐 있어?,Any recipes that use brandy and lemon juice?,,
+C3,37,0,mint와 lime으로 시작해 Mojito와 연관 칵테일들의 공통 재료를 찾고 확장 추천해줘.,"Start from mint and lime, find shared ingredients among Mojito and related cocktails, and expand recommendations.",,
+C3,38,0,whiskey와 sweet vermouth를 씨드로 Manhattan 유사군의 공통 재료를 모아 변주를 제안해줘.,"Seed with whiskey and sweet vermouth, gather shared ingredients in the Manhattan family, and propose variations.",,
+C3,39,0,tequila와 grapefruit로 시작해 Paloma 주변의 공통 재료를 통해 대안을 확장해줘.,"Start with tequila and grapefruit, then expand alternatives via common ingredients around the Paloma.",,
+C3,40,0,gin과 lemon을 씨드로 sour 계열의 공통 재료를 추출하고 연관 칵테일을 확장해줘.,"Seed with gin and lemon, extract shared ingredients in the sour family, and expand to related cocktails.",,
+C3,41,0,rum과 coffee liqueur에서 출발해 Espresso Martini 및 유사 칵테일의 공통 재료로 확장해줘.,"Start from rum and coffee liqueur, then expand via shared ingredients across Espresso Martini and similar cocktails.",,
+C3,42,0,Aperol과 prosecco를 씨드로 스프리츠 계열 공통 재료를 모아 파생 칵테일을 추천해줘.,"Seed with Aperol and prosecco, collect shared ingredients in the spritz family, and recommend derivatives.",,
+C3,43,0,rye whiskey와 Campari를 시작점으로 Boulevardier와 인접 레시피들의 공통 재료를 확장해줘.,"Use rye whiskey and Campari as a starting point, expand common ingredients across the Boulevardier and adjacent recipes.",,
+C3,44,0,"보드카랑 피치 슈냅스가 있는데, 뭐 만들면 좋을까?","I’ve got vodka and peach schnapps, what should I make?",,
+C3,45,0,테킬라랑 자몽 주스로 클래식 칵테일 만들 수 있을까?,Can I use tequila and grapefruit juice for a classic cocktail?,,
+C3,46,0,진이랑 엘더플라워 리큐어로 괜찮은 음료 뭐 있어?,What’s a good drink with gin and elderflower liqueur?,,
+C3,47,0,위스키랑 애플사이더로 만들 수 있는 거 뭐 없을까?,Any ideas with whiskey and apple cider?,,
+C3,48,0,"럼이랑 그레나딘을 발견했는데, 이걸로 뭐 만들 수 있을까?",I just found some rum and grenadine—what can I do with that?,,
+C3,49,0,"보드카랑 트리플 섹만 있는데, 어떤 칵테일을 만들어볼 수 있을까?","If I only have vodka and triple sec, what drink can I shake up?",,
+C3,50,0,테킬라랑 파인애플 주스는 보통 어떻게 섞어서 마실까?,How do people usually mix tequila with pineapple juice?,,
+C4,1,1,"이 칵테일이 Manhattan과 비슷해 보이는데, 비슷한 재료 수를 가진 대안을 추천해줘.",This looks similar to Manhattan. please suggest alternatives with a similar number of ingredients.,c4-1,Manhattan
+C4,2,1,"사진 속 칵테일이 Mojito 계열처럼 보이니, 민트·라임을 공유하고 복잡도도 비슷한 레시피를 추천해줘.",The cocktail appears Mojito-like. please recommend recipes that share mint and lime with similar complexity.,c4-2,Mojito
+C4,3,1,"이 칵테일이 Martini와 유사한 드라이 인상을 주는데, 진·베르무트를 공유하며 간결한 대안을 찾아줘.",This gives a dry Martini-like impression. please find concise alternatives that share gin and vermouth.,c4-3,Gibson
+C4,4,1,Old Fashioned와 닮아 보이는 사진이야. 비터·설탕·위스키를 공유하고 재료 수가 비슷한 칵테일을 추천해줘.,"The photo resembles an Old Fashioned. please suggest cocktails that share bitters, sugar, and whiskey with similar ingredient counts.",c4-4,Old Fashioned
+C4,5,1,"사진 속 칵테일이 Negroni 느낌이니, 진·캄파리·베르무트를 공유하면서 복잡도가 유사한 대안을 찾아줘.","The cocktail feels like a Negroni. please find alternatives sharing gin, Campari, and vermouth with comparable complexity.",c4-5,Negroni
+C4,6,1,"이 칵테일을 Daiquiri로 가정하고, 럼·라임·설탕을 공유하며 재료가 3개 내외인 대안을 추천해줘.","Assuming this is a Daiquiri, please recommend 3-ingredient alternatives sharing rum, lime, and sugar.",c4-6,Daiquiri
+C4,7,1,"Whiskey Sour와 비슷해 보이니, 위스키·레몬을 공유하고 에그화이트 유무에 따른 난이도가 비슷한 레시피를 제안해줘.",It looks like a Whiskey Sour. please propose recipes sharing whiskey and lemon with similar difficulty considering egg white on/off.,c4-7,Whiskey Sour
+C4,8,1,"사진이 Sidecar 계열 같아 보이니, 브랜디·레몬·트리플 섹을 공유하고 복잡도가 비슷한 칵테일을 찾아줘.","The photo seems Sidecar-like. please find cocktails sharing brandy, lemon, and triple sec with similar complexity.",c4-8,Sidecar
+C4,9,1,"Boulevardier 류로 보이니, 위스키·캄파리·베르무트 공통 재료를 갖고 재료 수가 비슷한 대안을 추천해줘.","It looks like a Boulevardier. please suggest alternatives sharing whiskey, Campari, and vermouth with a similar number of ingredients.",c4-9,Boulevardier
+C4,10,1,Gimlet과 유사해 보이는 사진이야. 진·라임을 공유하고 단순한 구조의 칵테일을 찾아줘.,This resembles a Gimlet. please find simple-structure cocktails sharing gin and lime.,c4-10,Gimlet
+C4,11,1,"Aperol Spritz 느낌이 나니, 아페롤·프로세코를 공유하고 구성 난이도가 비슷한 스프리츠 대안을 추천해줘.",It feels like an Aperol Spritz. please recommend spritz alternatives sharing Aperol and Prosecco with similar build difficulty.,c4-11,Aperol Spritz
+C4,12,1,"사진이 Cosmopolitan에 가깝다면, 보드카·크랜베리·라임을 공유하고 복잡도가 비슷한 레시피를 제안해줘.","If the photo is close to a Cosmopolitan, please propose recipes sharing vodka, cranberry, and lime with similar complexity.",c4-12,Cosmopolitan
+C4,13,1,"Tom Collins로 추정되니, 진·레몬·소다를 공유하고 재료 수가 비슷한 하이볼 대안을 추천해줘.","Likely a Tom Collins. please recommend highball alternatives sharing gin, lemon, and soda with similar ingredient counts.",c4-13,Tom Collins
+C4,14,1,"Margarita와 닮아 보이니, 테킬라·라임·트리플 섹 공통 요소를 가진 유사 복잡도의 칵테일을 찾아줘.","It resembles a Margarita. please find cocktails with tequila, lime, and triple sec at similar complexity.",c4-14,Margarita
+C4,15,1,"Americano 계열처럼 보이니, 캄파리·스위트 베르무트·소다를 공유하고 가벼운 복잡도의 대안을 추천해줘.","It looks Americano-like. please suggest light-complexity alternatives sharing Campari, sweet vermouth, and soda.",c4-15,Americano
+C4,16,1,"Sazerac 분위기라면, 라이 위스키·페이쇼드 비터·앱생트 린스를 공유하고 비슷한 재료 수의 칵테일을 찾아줘.","If it has Sazerac vibes, please find cocktails sharing rye whiskey, Peychaud’s bitters, and absinthe rinse with a similar ingredient count.",c4-16,Sazerac
+C4,17,1,"French 75에 가깝다면, 진·레몬·설탕·스파클링 와인을 공유하고 복잡도 유사한 대안을 추천해줘.","If it’s close to a French 75, please recommend alternatives sharing gin, lemon, sugar, and sparkling wine with comparable complexity.",c4-17,French 75
+C4,18,1,"Paper Plane처럼 보이니, 버번·아마로·아페롤·레몬을 공유하고 재료 수가 같은 칵테일을 찾아줘.","It looks like a Paper Plane. please find cocktails sharing bourbon, amaro, Aperol, and lemon with the same ingredient count.",c4-18,Paper Plane
+C4,19,1,모히토랑 비슷하지만 조금 다른 레시피 뭐 있어?,Is there a recipe similar to a Mojito but a little different?,c4-19,mojito
+C4,20,1,"맨해튼 좋아하는데, 비슷한 느낌의 레시피 뭐가 있을까?","I like the Manhattan, what recipe has a similar vibe?",c4-20,Manhattan
+C4,21,1,올드 패션드 대신 마실만한 레시피 뭐 있어?,What’s a good alternative recipe to drink instead of an Old Fashioned?,c4-21,Old Fashioned
+C4,22,1,다이키리처럼 과일 맛 나는 거 레시피 있어?,Do you have a recipe with fruity flavors like a Daiquiri?,c4-22,Daiquiri
+C4,23,1,마티니 느낌 나는 칵테일 레시피 뭐 있어?,What cocktail recipe has a Martini-like feel?,c4-23,Martini
+C4,24,1,네그로니처럼 쓴맛 나는 칵테일 레시피 있어?,Are there cocktail recipes with a bitter taste like a Negroni?,c4-24,Negroni
+C4,25,1,"블러디 메리 좋아하는데, 비슷한 음료 레시피 뭐 있을까?","I like the Bloody Mary, what similar drink recipes are there?",c4-25,Bloody Mary
+C4,26,1,코스모폴리탄과 비슷한 칵테일 레시피 뭐가 있을까?,What cocktail recipes are similar to a Cosmopolitan?,c4-26,Cosmopolitan
+C4,27,1,롱아일랜드처럼 도수 높은 레시피 뭐 있어?,What recipes are strong like a Long Island Iced Tea?,c4-27,Long Island Iced Tea
+C4,28,1,피나콜라다처럼 크리미한 칵테일 레시피 뭐 있어?,What creamy cocktail recipes are like a Piña Colada?,c4-28,pina colada
+C4,29,1,프렌치 75처럼 스파클링 들어간 칵테일 레시피 뭐 있어?,What cocktail recipes with sparkling wine are like a French 75?,c4-29,French 75
+C4,30,1,마이 타이처럼 트로피컬한 칵테일 레시피 뭐 있어?,What tropical cocktail recipes are like a Mai Tai?,c4-30,Mai-Tai
+C4,31,1,카이피리냐랑 비슷하지만 다른 거 뭐 있어?,What’s something different but similar to a Caipirinha?,c4-31,Caipirinha
+C4,32,1,에스프레소 마티니 대신 마실만한 레시피 뭐 있어?,What recipes are good alternatives to an Espresso Martini?,c4-32,Espresso Martini
+C4,33,1,톰 콜린스랑 비슷한 칵테일 레시피 뭐 있어?,What cocktail recipes are similar to a Tom Collins?,c4-33,John Collins
+C4,34,1,위스키 사워 생각나게 하는 칵테일 레시피 뭐 있을까?,What cocktails are reminiscent of a Whiskey Sour?,c4-34,Whisky Sour
+C4,35,1,사이드카 대신 마실 수 있는 칵테일 레시피 뭐 있어?,What cocktail recipes are good alternatives to a Sidecar?,c4-35,Sidecar
+C4,36,0,"Manhattan과 유사한 칵테일을, 재료 수가 비슷한 후보 중심으로 추천해줘.","Please recommend cocktails similar to Manhattan, prioritizing those with a similar number of ingredients.",,
+C4,37,0,"Mojito 대안으로, 민트·라임·설탕·럼을 공유하고 복잡도가 유사한 레시피를 제안해줘.","As Mojito alternatives, please propose recipes sharing mint, lime, sugar, and rum with similar complexity.",,
+C4,38,0,Martini의 드라이 인상에 가깝고 진·베르무트를 공유하는 간단한 대안을 추천해줘.,Please recommend concise alternatives to a Martini that share gin and vermouth and keep a dry profile.,,
+C4,39,0,"Old Fashioned와 비슷하지만 다른 베이스 스피릿을 쓰되, 비터·설탕은 공유하는 후보를 찾아줘.",Please find Old Fashioned-like candidates using a different base spirit while sharing bitters and sugar.,,
+C4,40,0,"Negroni와 유사하지만 복잡도가 낮은 버전으로, 캄파리·베르무트를 공유하는 대안을 추천해줘.",Please recommend Negroni-like alternatives of lower complexity that share Campari and vermouth.,,
+C4,41,0,Boulevardier와 인접한 칵테일 중 위스키·캄파리를 공유하고 재료 수가 비슷한 레시피를 제안해줘.,Please propose Boulevardier-adjacent cocktails that share whiskey and Campari with a similar ingredient count.,,
+C4,42,0,"Gimlet과 유사하게 진·라임을 공유하는, 단순 레시피 중심의 대안을 추천해줘.",Please recommend simple-recipe alternatives that share gin and lime with a Gimlet.,,
+C4,43,0,아페롤 스프리츠랑 비슷한 거 있어?,Got anything like an Aperol Spritz?,,
+C4,44,0,사제락처럼 도수 높은 칵테일 뭐 있어?,Something strong like a Sazerac?,,
+C4,45,0,민트 줄렙과 비슷한 칵테일 뭐 있을까?,What’s close to a Mint Julep?,,
+C4,46,0,팔로마 대신 마실 수 있는 대안은 뭐가 있을까?,Any alternatives to a Paloma?,,
+C4,47,0,김렛과 비슷한 칵테일 뭐 있어?,What’s similar to a Gimlet?,,
+C4,48,0,블루바디에르처럼 또 다른 칵테일 뭐 있어?,Another drink like a Boulevardier?,,
+C4,49,0,클로버 클럽과 비교할 만한 칵테일 뭐가 있을까?,What cocktails compare to a Clover Club?,,
+C4,50,0,라모스 진 피즈를 못 구하면 비슷한 칵테일 뭐 있어?,"If I can’t get a Ramos Gin Fizz, what’s close?",,

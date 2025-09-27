@@ -8,11 +8,10 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
 from utils.openai_client import OpenAIClient
-from utils.prompt_loader import PromptLoader
+from prompts.reflection_prompt import REFLECTION_PROMPT_TEMPLATE
 
 # OpenAI 클라이언트 초기화
 openai_client = OpenAIClient()
-prompt_loader = PromptLoader()
 
 def format_search_results(results: List[Dict[str, Any]]) -> str:
     """
@@ -65,8 +64,8 @@ def evaluate_search_quality(user_query: str, search_results: List[Dict[str, Any]
         평가 결과 딕셔너리
     """
     try:
-        # 리플렉션 프롬프트 로드
-        reflection_prompt = prompt_loader.get_reflection_prompt()
+        # 리플렉션 프롬프트 직접 사용
+        reflection_prompt = REFLECTION_PROMPT_TEMPLATE
         
         # 검색 결과 포맷팅
         formatted_results = format_search_results(search_results)

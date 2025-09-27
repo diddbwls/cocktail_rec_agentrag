@@ -45,7 +45,7 @@ Please classify the keywords according to the following guidelines, ingredient c
 
 
 --------------------------------
-User Question: "{user_question}"
+User Question: "{question}"
 
 Categories: {category_list}
 
@@ -66,6 +66,7 @@ Please classify strictly in the following JSON format:
 C1_SYSTEM_MESSAGE = "You are a keyword extraction expert. Always respond with valid JSON only. Extract keywords accurately based on include/exclude semantics."
 
 C1_PROMPT_TEMPLATE = """
+**IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 You are a visual cocktail search expert.  
 Please answer by considering the following cocktail recommendation guidelines and answer guidelines.
 
@@ -82,6 +83,7 @@ Please answer by considering the following cocktail recommendation guidelines an
 2. Do not guess information that is not in the search results.
 3. Focus on describing the visual characteristics of the cocktail (color, appearance, layering).
 4. Clearly explain the relationship between the color of ingredients and the cocktail’s appearance.
+5. **IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
 
 Question: {question}
 

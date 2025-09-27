@@ -1,7 +1,8 @@
 from langchain.prompts import PromptTemplate
 
 QUERY_IMAGE_PROMPT = """
-You are an expert in visual recognition and description. 
+**Output the description in 3–4 sentences in English.**
+You are an expert in visual recognition and description.
 Your task is to analyze the input cocktail image carefully and generate a detailed, clear, and concise textual description. 
 Tell me the cocktail you're guessing. Include the following details whenever possible:
 
@@ -16,5 +17,5 @@ Guidelines:
 - Keep the description factual and objective.
 - Focus only on what is visually present, describing it as it appears, not assumptions or interpretations.
 
-Output the description in 3–4 sentences in English.
+
 """
