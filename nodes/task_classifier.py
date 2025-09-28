@@ -39,11 +39,8 @@ def query_classification(state: Dict[str, Any]) -> Dict[str, Any]:
         return state
     
     try:
-        # 태스크 분류 프롬프트 직접 사용
-        classifier_prompt = TASK_CLASSIFIER_TEMPLATE
-        
-        # 프롬프트에 쿼리 삽입
-        prompt = classifier_prompt.replace("{question}", query_text)
+        # 기존 task classifier 프롬프트 사용
+        prompt = TASK_CLASSIFIER_TEMPLATE.replace("{question}", query_text)
         
         print(f"🤖 태스크 분류 중...")
         print(f"📝 쿼리: {query_text}")

@@ -2,14 +2,25 @@ import pandas as pd
 import openai
 import json
 import os
+import sys
 from typing import Dict
 import time
 from tqdm import tqdm
 
+# Add parent directory to path for importing prompts
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 
-# Configuration
-# Target CSV filename to evaluate
-CSV_FILENAME = "gpt-4o-mini_ablation_simple_rag.csv" 
+from prompts.llm_judge_prompt import get_evaluation_prompt
+
+
+# Configuration - Hyperparameters
+CSV_FILENAME = "gpt-4o-mini_ablation_simple_rag.csv"  # Target CSV filename to evaluate
+SAMPLE_LIMIT = None  # Set to integer to limit number of samples (None = all samples)
+TEMPERATURE = 0.0  # OpenAI API temperature (0.0-1.0)
+MAX_TOKENS = 100  # Maximum tokens for LLM response
+API_DELAY = 0.1  # Delay between API calls in seconds 
 
 # Running this script will save evaluation results and summary files to the result folder
 # Output format:
@@ -26,51 +37,14 @@ class LLMAsJudge:
         self.client = openai.OpenAI(api_key=api_key or os.getenv('OPENAI_API_KEY'))
         
     def evaluate_answer(self, final_answer: str, query: str, context: str = "") -> Dict[str, int]:
-        prompt = f"""
-You are a customer using a cocktail recommendation platform.
-The system has suggested a cocktail to you, along with an explanation text.
-Your task is to evaluate the quality of this explanation from the perspective of an end user. 
-Judge the explanation strictly based on the provided query and context. 
-Do not reward extra details if they are not supported by the context.
-
-Please evaluate on the following four criteria, giving each a score between 1 and 100:
-
-1. **Persuasiveness (1-100)**: "This explanation is convincing to me."
-   - Does it sound compelling and trustworthy from a user perspective?
-   - Logical reasoning should be rewarded, not just length or flowery language.
-
-2. **Transparency (1-100)**: "Based on this explanation, I understand why this cocktail is recommended."
-   - As a user, can you clearly see the connection between the query, the context, and the final answer?
-   - The reasoning should be explicit and easy to follow.
-
-3. **Accuracy (1-100)**: "This explanation is consistent with the provided query and context."
-   - Check if the explanation correctly uses the given context.
-   - If the explanation mentions details (ingredients, colors, garnishes, preparation methods) not present in the context, lower the score significantly.
-
-4. **Satisfaction (1-100)**: "I am satisfied with this explanation."
-   - Overall impression as a user: does this explanation meet your needs and answer your query?
-   - Balance clarity, correctness, and persuasiveness.
-
-Return your evaluation strictly in the following JSON format, with no additional text:
-{{
-    "persuasiveness": <score>,
-    "transparency": <score>, 
-    "accuracy": <score>,
-    "satisfaction": <score>
-}}
-
-Query: {query}
-Context: {context}
-Final Answer (explanation): {final_answer}
-
-"""
+        prompt = get_evaluation_prompt(final_answer, query, context)
         
         try:
             response = self.client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.1,
-                max_tokens=200
+                temperature=TEMPERATURE,
+                max_tokens=MAX_TOKENS
             )
             
             result = json.loads(response.choices[0].message.content.strip())
@@ -78,10 +52,15 @@ Final Answer (explanation): {final_answer}
             
         except Exception as e:
             print(f"Error evaluating answer: {e}")
-            return {"persuasiveness": 0, "transparency": 0, "accuracy": 0, "satisfaction": 0}
+            return {"persuasiveness": 1, "transparency": 1, "accuracy": 1, "satisfaction": 1}
     
     def evaluate_csv(self, csv_path: str, output_path: str = None) -> pd.DataFrame:
         df = pd.read_csv(csv_path, encoding='utf-8-sig')
+        
+        # Apply sample limit if specified
+        if SAMPLE_LIMIT is not None and SAMPLE_LIMIT < len(df):
+            df = df.head(SAMPLE_LIMIT)
+            print(f"Limited to {SAMPLE_LIMIT} samples")
         
         if output_path is None:
             filename = CSV_FILENAME.replace('.csv', '')
@@ -95,12 +74,12 @@ Final Answer (explanation): {final_answer}
             context = str(row.get('final_context', '')) if pd.notna(row.get('final_context')) else ""
             
             if not final_answer.strip():
-                scores = {"persuasiveness": 0, "transparency": 0, "accuracy": 0, "satisfaction": 0}
+                scores = {"persuasiveness": 1, "transparency": 1, "accuracy": 1, "satisfaction": 1}
             else:
                 scores = self.evaluate_answer(final_answer, query, context)
             
             evaluation_results.append(scores)
-            time.sleep(0.1)
+            time.sleep(API_DELAY)
         
         for criterion in ["persuasiveness", "transparency", "accuracy", "satisfaction"]:
             df[f"{criterion}_score"] = [result[criterion] for result in evaluation_results]

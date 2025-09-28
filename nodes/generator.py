@@ -183,15 +183,11 @@ def generate_final_response(user_query: str, cocktails: List[Dict[str, Any]],
         task_prompt = task_prompts.get(task_type, C1_PROMPT_TEMPLATE)
         
         # 디버깅: 태스크 프롬프트 확인
-        print(f"🔍 태스크 프롬프트 확인 ({task_type}):")
-        print(f"   - 프롬프트 길이: {len(task_prompt)} 글자")
-        print(f"   - context 플레이스홀더 포함: {'context' in task_prompt}")
-        print(f"   - question 플레이스홀더 포함: {'question' in task_prompt}")
-        if 'context' in task_prompt:
-            # context가 어디에 위치하는지 확인
-            context_pos = task_prompt.find('{context}')
-            context_preview = task_prompt[max(0, context_pos-50):context_pos+100] if context_pos != -1 else "NOT_FOUND"
-            print(f"   - context 위치 주변: ...{context_preview}")
+        print(f"🔍 태스크 템플릿 확인 ({task_type}):")
+        print(f"   - 템플릿 길이: {len(task_prompt)} 글자")
+        print(f"   - context 플레이스홀더 포함: {'{context}' in task_prompt}")
+        print(f"   - question 플레이스홀더 포함: {'{question}' in task_prompt}")
+        print(f"   - 템플릿은 포맷팅 전 상태입니다 (placeholders 포함 정상)")
         
         # 칵테일 정보 포맷팅
         cocktails_context = format_cocktails_for_response(cocktails)
@@ -242,6 +238,24 @@ original data: {evaluation_scores}
             context=cocktails_context
         )
         
+        # 디버깅: 포맷팅 후 프롬프트 확인
+        print(f"🔍 포맷팅 후 프롬프트 확인:")
+        print(f"   - question 길이: {len(user_query)} 글자")
+        print(f"   - context 길이: {len(cocktails_context)} 글자")
+        print(f"   - 최종 프롬프트 길이: {len(prompt)} 글자")
+        
+        # 실제로 placeholders가 교체되었는지 확인
+        has_question_placeholder = '{question}' in prompt
+        has_context_placeholder = '{context}' in prompt
+        print(f"   - question placeholder 남아있음: {has_question_placeholder}")
+        print(f"   - context placeholder 남아있음: {has_context_placeholder}")
+        
+        if has_question_placeholder or has_context_placeholder:
+            print(f"⚠️ 경고: Placeholder가 교체되지 않았습니다!")
+            print(f"   - 원본 템플릿 일부: {task_prompt[:200]}...")
+            print(f"   - user_query 일부: {user_query[:100]}...")
+            print(f"   - cocktails_context 일부: {cocktails_context[:100]}...")
+        
         # 시스템 분석 정보 생성
         system_analysis = format_system_analysis_info(
             task_type=task_type,
@@ -259,20 +273,28 @@ original data: {evaluation_scores}
         enhanced_prompt = prompt  # 프롬프트에 이미 필요한 지시사항이 포함되어 있음
         print(f"🎯 최종 응답 생성 중... ({task_type})")
         
-        # LLM이 받는 최종 컨텍스트를 HTML로 표시
-        from IPython.display import display, HTML
-        
-        # HTML 형태로 컨텍스트 포맷팅
-        html_content = f"""
-        <div style="border: 2px solid #4CAF50; border-radius: 10px; padding: 20px; margin: 10px 0; background-color: #f8f9fa;">
-            <h3 style="color: #2E8B57; margin-top: 0;">🤖 LLM이 받는 최종 컨텍스트 ({task_type})</h3>
-            <div style="background-color: white; border: 1px solid #ddd; border-radius: 5px; padding: 15px; font-family: monospace; white-space: pre-wrap; max-height: 600px; overflow-y: auto;">
+        # LLM이 받는 최종 컨텍스트를 표시 (Jupyter/script 환경 모두 지원)
+        try:
+            # Jupyter 환경에서만 HTML 표시
+            from IPython.display import display, HTML
+            
+            # HTML 형태로 컨텍스트 포맷팅
+            html_content = f"""
+            <div style="border: 2px solid #4CAF50; border-radius: 10px; padding: 20px; margin: 10px 0; background-color: #f8f9fa;">
+                <h3 style="color: #2E8B57; margin-top: 0;">🤖 LLM이 받는 최종 컨텍스트 ({task_type})</h3>
+                <div style="background-color: white; border: 1px solid #ddd; border-radius: 5px; padding: 15px; font-family: monospace; white-space: pre-wrap; max-height: 600px; overflow-y: auto;">
 {enhanced_prompt}
+                </div>
             </div>
-        </div>
-        """
-        
-        display(HTML(html_content))
+            """
+            
+            display(HTML(html_content))
+        except (ImportError, NameError):
+            # 일반 Python 스크립트 환경에서는 텍스트로 표시
+            print(f"🤖 LLM에 전송되는 최종 프롬프트 ({task_type}) - PLACEHOLDERS 교체 완료:")
+            print("=" * 80)
+            print(enhanced_prompt)
+            print("=" * 80)
         
         # OpenAI API 호출
         response = openai_client.generate(enhanced_prompt, max_tokens=1500)

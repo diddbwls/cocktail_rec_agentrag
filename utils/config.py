@@ -12,7 +12,7 @@ EMBEDDING_CACHE_FILE = "embedding_cache.json"
 
 # qwen/qwen2.5-vl-72b-instruct:free
 # gpt-4o-mini
-LLM_MODEL = "qwen/qwen2.5-vl-72b-instruct:free"
+LLM_MODEL = "gpt-4o-mini"
 TEMPERATURE = 0
 
 #top -k 설정

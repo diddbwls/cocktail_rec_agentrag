@@ -64,14 +64,11 @@ def evaluate_search_quality(user_query: str, search_results: List[Dict[str, Any]
         평가 결과 딕셔너리
     """
     try:
-        # 리플렉션 프롬프트 직접 사용
-        reflection_prompt = REFLECTION_PROMPT_TEMPLATE
-        
-        # 검색 결과 포맷팅
+        # 기존 reflection 프롬프트 사용
         formatted_results = format_search_results(search_results)
         
         # 프롬프트에 데이터 삽입
-        prompt = reflection_prompt.format(
+        prompt = REFLECTION_PROMPT_TEMPLATE.format(
             user_query=user_query,
             num_results=len(search_results),
             search_results=formatted_results
