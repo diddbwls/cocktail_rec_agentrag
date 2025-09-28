@@ -10,65 +10,53 @@ from langchain.prompts import PromptTemplate
 
 # C4 키워드 추출 프롬프트
 C4_KEYWORD_EXTRACTION_PROMPT = """
-The C4 algorithm searches for cocktail alternatives based on relationship and recipe complexity:
-- Prioritize cocktails that share many ingredients with the target cocktail
-- Filter for cocktails with similar recipe complexity (number of ingredients)
-- Calculate similarity through graph relationships (HAS_INGREDIENT)
+Extract target info for cocktail recipe-similarity search.
 
-Extract the target information from the user’s question for cocktail similarity search.
+Rules:
+- target_cocktail: name if present; else "".
+- ingredients: explicitly mentioned only.
+- Output VALID JSON only.
 
-## Information to Extract:
-1. target_cocktail: The reference cocktail name (e.g., "Manhattan", "Mojito", "Martini")  
-   - Most important! This is required for relationship-based search
-2. ingredients: Explicitly mentioned ingredients (e.g., "whiskey", "vermouth", "bitters")  
-   - Used to identify a target when no cocktail name is given
+Examples:
+Q: "recommend cocktails similar to Manhattan"
+→ {{"target_cocktail":"Manhattan","ingredients":[]}}
+Q: "cocktails using whiskey and sweet vermouth"
+→ {{"target_cocktail":"","ingredients":["whiskey","sweet vermouth"]}}
 
-## Example Question 1: "recommend cocktails similar to Manhattan"
-→ {{"target_cocktail": "Manhattan", "ingredients": []}}
-
-## Example Question 2: "other cocktails in the style of Mojito"  
-→ {{"target_cocktail": "Mojito", "ingredients": []}}
-
-## Example Question 3: "cocktails with recipes similar to those using whiskey and sweet vermouth"
-→ {{"target_cocktail": "", "ingredients": ["whiskey", "sweet vermouth"]}}
-
-## Example Question 4: "cocktails similar to Old Fashioned but with different ingredients"
-→ {{"target_cocktail": "Old Fashioned", "ingredients": []}}
-
---------------------------------
 User Question: {question}
-
 Reference Categories: {category_list}
 
-Please respond strictly in the following JSON format:
+JSON:
 {{
-    "target_cocktail": "reference cocktail name (empty string if none)",
-    "ingredients": ["mentioned ingredients"]
+  "target_cocktail": "name or empty string",
+  "ingredients": ["mentioned ingredients"]
 }} 
 """
 
+C4_SYSTEM_MESSAGE = (
+  "You are a cocktail recipe recommendation expert."
+  "Never infer. Always output valid JSON only."
+)
 
-# C4 System Message
-C4_SYSTEM_MESSAGE = "You are a cocktail similarity expert. Always respond with valid JSON only."
+
 
 C4_PROMPT_TEMPLATE = """
-**IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
-You are an expert in cocktail similarity and alternative recommendations.
-Please answer by considering the following cocktail recommendation guidelines and answer guidelines.
+CRITICAL: Use ONLY the search results below. Do NOT add outside info.
 
-## Cocktail Recommendation Guidelines
-- Prioritize recommending cocktails with similar recipe complexity (number of ingredients)
-- Emphasize cocktails that share the same base spirit
-- Explain similarities in preparation methods (shaking vs stirring)
-- Compare similarities and differences in flavor profiles
-- When suggesting substitute ingredients, explain the resulting flavor changes
+You are a cocktail recipe recommendation expert.
+Answer by following these rules:
 
-## Answer Guidelines:
-1. Answer accurately based on the given search results.
-2. Do not guess information that is not in the search results.
-3. Clearly explain the similarities and differences with the target cocktail.
-4. Mention ingredient overlap and recipe complexity when explaining the reason for recommendations.
-5. **IMPORTANT: You must ONLY use information provided in the search results. Do NOT add any information not present in the context.**
+## Guidelines
+- Recommend cocktails with similar recipe complexity (number of ingredients).
+- Emphasize cocktails that share the same base spirit.
+- Explain similarities in preparation (shaking vs stirring).
+- Compare similarities/differences in flavor profiles.
+- If substitutions are mentioned, explain the flavor impact.
+
+## Answer Rules
+- Base everything strictly on the search results.
+- Do not guess or invent missing info.
+- Be concise: summarize in 3–5 sentences.
 
 Question: {question}
 

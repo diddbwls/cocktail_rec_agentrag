@@ -256,10 +256,7 @@ original data: {evaluation_scores}
         )
 
         # 순수한 칵테일 정보만으로 프롬프트 구성 (시스템 분석 정보 제외)
-        enhanced_prompt = f"""{prompt}
-
-Based on the cocktail information above, please recommend cocktails with detailed explanations that are helpful for the user.
-Include reasons for recommendation, flavor characteristics, and situational suggestions in your explanation."""
+        enhanced_prompt = prompt  # 프롬프트에 이미 필요한 지시사항이 포함되어 있음
         print(f"🎯 최종 응답 생성 중... ({task_type})")
         
         # LLM이 받는 최종 컨텍스트를 HTML로 표시
