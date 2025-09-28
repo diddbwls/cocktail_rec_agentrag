@@ -63,3 +63,14 @@ OPENAI_API_KEY=your_openai_api_key
 2. Run Neo4j database
 3. Execute `user.ipynb`
 4. Input your cocktail questions
+
+## Evaluation
+
+1. **Evaluation data location**: `./data/cocktail_eval_data.csv`
+2. **Run `eval_generate_{model_name}.py`**
+   - Generated responses are saved as `{model_name}.csv` in `output/` directory
+3. **Run `llm_as_judge.py`**
+   - Evaluation results are saved as `{model_name}_evaluated.csv` in `result/` directory
+   - Summary statistics are saved as `{model_name}_summary.csv` in `result/` directory
+
+*Note: Files in `output/` and `result/` directories are examples for reference.*

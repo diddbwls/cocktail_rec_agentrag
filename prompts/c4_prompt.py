@@ -42,20 +42,20 @@ C4_SYSTEM_MESSAGE = (
 
 C4_PROMPT_TEMPLATE = """
 CRITICAL: Use ONLY the search results below. Do NOT add outside info.
+CRITICAL: Only describe what is explicitly provided in the search results.
+CRITICAL: Do not make claims about preparation methods, flavor profiles, or characteristics unless explicitly stated.
 
-You are a cocktail recipe recommendation expert.
-Answer by following these rules:
+Task: Recommend cocktails with similar recipe patterns based on the search results.
 
-## Guidelines
-- Recommend cocktails with similar recipe complexity (number of ingredients).
-- Emphasize cocktails that share the same base spirit.
-- Explain similarities in preparation (shaking vs stirring).
-- Compare similarities/differences in flavor profiles.
-- If substitutions are mentioned, explain the flavor impact.
+Explain briefly:
+- Ingredient count and complexity similarities among the recommended cocktails.
+- Shared base spirits and common ingredients in the search results.
+- How the recommended cocktails relate to the user's request through ingredient patterns.
 
-## Answer Rules
+Answer Rules:
 - Base everything strictly on the search results.
-- Do not guess or invent missing info.
+- Do not guess preparation methods (shaking vs stirring) or flavor descriptions.
+- Do not invent substitution effects or taste comparisons.
 - Be concise: summarize in 3–5 sentences.
 
 Question: {question}

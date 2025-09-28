@@ -10,8 +10,11 @@ Guidelines:
 - include_ingredients: explicitly required ingredients.
 - exclude_ingredients: explicitly excluded ingredients ("without", "exclude", "leave out").
 - glassType: explicit glass types (e.g., martini glass, highball glass).
-- category: pick ONLY from DB list: Coffee / Tea, Cocoa, Milk / Float / Shake, Soft Drink,Shot, Cocktail, Shake, Other / Unknown, Punch / Party Drink, Homemade Liqueur, Ordinary Drink, Beer.
-- visual_keywords: ONLY explicit color terms (red, blue, golden, orange, green, purple, pink, yellow, black, white, brown).
+- category: pick ONLY from DB list: Coffee / Tea, Cocoa, Milk / Float / Shake, Soft Drink,
+            Shot, Cocktail, Shake, Other / Unknown, Punch / Party Drink, Homemade Liqueur,
+            Ordinary Drink, Beer.
+- visual_keywords: ONLY explicit color terms (red, blue, golden, orange, green,
+                   purple, pink, yellow, black, white, brown).
 
 Examples:
 "red cocktail with cherry garnish"
@@ -46,17 +49,19 @@ C1_SYSTEM_MESSAGE = (
 
 C1_PROMPT_TEMPLATE = """
 CRITICAL: Use ONLY the search results below. Do NOT add outside info.
+CRITICAL: Only describe what is explicitly provided in the search results.
+CRITICAL: Do not make claims about colors, appearance, or visual properties unless explicitly stated.
 
-Task: Recommend cocktails based on visual appearance and ingredients.
+Task: Recommend cocktails based on ingredient similarity and glass types.
 
 Explain briefly:
-- Key visual traits (color, layering, gradients, overall look).
-- How ingredient colors shape the cocktail’s appearance.
-- Commonalities among cocktails with similar visual style.
-- If relevant, seasonal or situational color appeal (e.g., bright for summer).
+- Shared ingredients among the recommended cocktails.
+- How the ingredients and glass types relate to the user's request.
+- Commonalities among cocktails with similar ingredient profiles.
 
 Answer Rules:
-- Stick strictly to the context; no guessing.
+- Stick strictly to the context; no guessing or assumptions.
+- Do not invent color, flavor, or visual descriptions.
 - Be concise: summarize in 3–5 sentences.
 
 Question: {question}

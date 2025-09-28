@@ -44,16 +44,19 @@ C2_SYSTEM_MESSAGE = (
 
 C2_PROMPT_TEMPLATE = """
 CRITICAL: Use ONLY the search results below. Do NOT add outside info.
+CRITICAL: Only describe what is explicitly provided in the search results.
+CRITICAL: Do not make claims about serving styles, preparation methods, or characteristics unless explicitly stated.
 
 Task: Recommend cocktails prioritized by glass type, then match ingredients.
 
 Explain briefly:
-- How the specified glass type relates to serving style and typical cocktails.
-- Commonalities/differences among cocktails using that glass.
-- Level-based ingredient matching results (all-match → partial-match) and why they fit.
+- How the glass types in the search results match the user's request.
+- Shared ingredients among cocktails that use the specified glass type.
+- Ingredient matching patterns (complete matches vs partial matches) and their relevance.
 
 Answer Rules:
-- Strictly stick to the provided context; no guessing.
+- Stick strictly to the provided context; no guessing or assumptions.
+- Do not invent serving style descriptions or typical usage patterns.
 - Be concise: summarize in 3–5 sentences.
 
 Question: {question}

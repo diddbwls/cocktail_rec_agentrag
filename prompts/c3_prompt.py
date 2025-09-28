@@ -42,16 +42,19 @@ C3_SYSTEM_MESSAGE = (
 
 C3_PROMPT_TEMPLATE = """
 CRITICAL: Use ONLY the search results below. Do NOT add outside info.
+CRITICAL: Only describe what is explicitly provided in the search results.
+CRITICAL: Do not make claims about flavors, taste differences, or substitution effects unless explicitly stated.
 
 Task: Explain multi-hop ingredient expansion results and recommend relevant cocktails.
 
 Explain briefly:
-- The chain (initial ingredients → related cocktails → shared ingredients → expanded cocktails)
-- Key shared-ingredient patterns and cocktail families
-- Notable flavor similarities/differences and any mentioned substitutions (with flavor impact)
+- The ingredient expansion chain shown in the search results.
+- Shared ingredient patterns among the recommended cocktails.
+- How the expanded cocktails relate to the user's original request through common ingredients.
 
 Answer Rules:
-- Strictly follow the provided context; no guessing.
+- Strictly follow the provided context; no guessing or assumptions.
+- Do not invent flavor profiles, taste descriptions, or substitution effects.
 - Be concise: summarize in 3–5 sentences.
 
 Question: {question}
