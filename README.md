@@ -74,3 +74,27 @@ OPENAI_API_KEY=your_openai_api_key
    - Summary statistics are saved as `{model_name}_summary.csv` in `result/` directory
 
 *Note: Files in `output/` and `result/` directories are examples for reference.*
+
+## Experimental Results
+
+We evaluated our system against a baseline approach using two evaluation models (GPT-4o-mini and GPT-5) across four key metrics:
+![Evaluation](evaluation.png)
+
+
+### Performance Comparison
+
+| Evaluation Model | Metric | Ours | w/o graph | Improvement |
+|------------------|--------|------|-----------|-------------|
+| **GPT-4o-mini** | Persuasiveness | 2.98 | 2.83 | +0.15 (+5.30%) |
+| | Transparency | 3.82 | 3.65 | +0.17 (+4.66%) |
+| | Accuracy | 3.24 | 3.12 | +0.12 (+3.85%) |
+| | Satisfaction | 3.00 | 2.83 | +0.17 (+6.01%) |
+| | **Average** | **3.26** | **3.11** | **+0.15 (+4.82%)** |
+| **GPT-5** | Persuasiveness | 2.00 | 1.92 | +0.08 (+4.17%) |
+| | Transparency | 2.61 | 2.60 | +0.01 (+0.38%) |
+| | Accuracy | 2.15 | 2.06 | +0.09 (+4.37%) |
+| | Satisfaction | 1.94 | 1.87 | +0.07 (+3.74%) |
+| | **Average** | **2.17** | **2.11** | **+0.06 (+2.84%)** |
+
+
+*Evaluation methodology: LLM-as-a-Judge using 1-5 Likert scale ratings on 200 test cases per condition.*

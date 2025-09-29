@@ -16,31 +16,25 @@ def get_evaluation_prompt(answer: str, query: str, context: str = "") -> str:
     """
     
     prompt = f"""
-You are a customer using a cocktail recommendation platform.
-The system has suggested a cocktail to you, along with an explanation text.
-Your task is to evaluate the quality of this explanation from the perspective of an end user.
+Considering you are a user of a cocktail recommendation platform.
+The recommendation system has received your question and suggested a cocktail, accompanied by an explanation.
+Please rate the user experience with the explanation in the following aspects:
 
-Judge the explanation strictly based on the provided query and context.
-Do not use any knowledge outside the provided information.
-Return JSON only. Do not add explanations or extra text.
+- Persuasiveness: This explanation is convincing to me.
+- Transparency: Based on this explanation, I understand why this cocktail is recommended.
+- Accuracy: This explanation is consistent with my taste/preferences.
+- Satisfaction: I am satisfied with this explanation.
 
-Criteria (1–5 Likert scale):
-1. Persuasiveness: "This explanation is convincing to me."
-2. Transparency: "Based on this explanation, I understand why this cocktail is recommended."
-3. Accuracy: "This explanation is consistent with the provided query and context." 
-   - If no context is given, evaluate consistency only with the query.
-4. Satisfaction: "I am satisfied with this explanation."
-
-Rating Scale:
-1 = Strongly disagree, 2 = Disagree, 3 = Neutral, 4 = Agree, 5 = Strongly agree
-
-Return your evaluation strictly in JSON format:
-{{"persuasiveness": 1, "transparency": 1, "accuracy": 1, "satisfaction": 1}}
+Assess the aspects with integers between 1–5, where 1 = strongly disagree and 5 = strongly agree.
 
 Query: {query}
-Context: {context}
 Answer: {answer}
+
+Respond only with a valid JSON object in this exact format:
+{{"persuasiveness": 1, "transparency": 1, "accuracy": 1, "satisfaction": 1}}
 
 """
     
     return prompt
+
+#Context: {context}
