@@ -2,7 +2,6 @@
 
 Multi-Agent RAG system for cocktail recommendations.
 
-<img src="graph_viz/framework.png" alt="framework" width="600">
 ![Framework](graph_viz/framework.png)
 
 
@@ -89,7 +88,6 @@ We evaluated our Multi-Agent RAG for Cocktails (MARC) system against a baseline 
 
 ### Detailed Performance Comparison
 
-<sub>
 
 | Evaluator | System | Pers. | Trans. | Acc. | Satis. | Avg. |
 |-----------|--------|-------|--------|------|--------|------|
@@ -99,8 +97,6 @@ We evaluated our Multi-Agent RAG for Cocktails (MARC) system against a baseline 
 | | **MARC** | **2.19** | **2.97** | **1.98** | **1.93** | **2.27** |
 | Human | Baseline | 4.27 | 4.41 | 4.31 | 4.12 | 4.28 |
 | | **MARC** | 4.25 | **4.44** | **4.38** | 4.14 | **4.30** |
-
-</sub>
 
 *Pers. = Persuasiveness, Trans. = Transparency, Acc. = Accuracy, Satis. = Satisfaction, Avg. = Average*
 
