@@ -99,7 +99,5 @@ We evaluated our Multi-Agent RAG for Cocktails (MARC) system against a baseline 
 | | **MARC** | 4.25 | **4.44** | **4.38** | **4.14** | **4.30** |
 
 *Pers. = Persuasiveness, Trans. = Transparency, Acc. = Accuracy, Satis. = Satisfaction, Avg. = Average*
-
 *Baseline = MARC w/o Graph*
 
-Our MARC system consistently outperformed the baseline across most metrics, demonstrating the effectiveness of our graph-based approach for cocktail recommendations.
