@@ -95,8 +95,8 @@ We evaluated our Multi-Agent RAG for Cocktails (MARC) system against a baseline 
 | | **MARC** | **4.12** | **4.70** | **3.73** | **4.11** | **4.17** |
 | GPT-5 | Baseline | 1.97 | 2.82 | 1.81 | 1.78 | 2.09 |
 | | **MARC** | **2.19** | **2.97** | **1.98** | **1.93** | **2.27** |
-| Human | Baseline | 4.27 | 4.41 | 4.31 | 4.12 | 4.28 |
-| | **MARC** | 4.25 | **4.44** | **4.38** | 4.14 | **4.30** |
+| Human | Baseline | **4.27** | 4.41 | 4.31 | 4.12 | 4.28 |
+| | **MARC** | 4.25 | **4.44** | **4.38** | **4.14** | **4.30** |
 
 *Pers. = Persuasiveness, Trans. = Transparency, Acc. = Accuracy, Satis. = Satisfaction, Avg. = Average*
 
