@@ -19,17 +19,17 @@ class CocktailGraphBuilder:
         Initialize the CocktailGraphBuilder with configuration
         """
         if use_python_config:
-            # Python 설정 사용
+            # Python config used
             try:
                 from utils.config import get_config
                 self.config = get_config()
-                print("✅ Python 설정 모듈 사용")
+                print("✅ Python config module used")
             except ImportError:
-                print("⚠️ Python 설정 모듈을 찾을 수 없음. JSON 설정으로 fallback")
+                print("⚠️ Python config module not found. Using JSON config")
                 with open(config_path, 'r') as f:
                     self.config = json.load(f)
         else:
-            # JSON 설정 사용
+            # JSON config used
             with open(config_path, 'r') as f:
                 self.config = json.load(f)
         
@@ -283,7 +283,7 @@ class CocktailGraphBuilder:
         except UnicodeDecodeError:
             df = pd.read_csv(csv_path, encoding='latin-1')
         
-        # 전체 데이터 사용
+        # use all data
         print(f"Processing all {len(df)} rows...")
         
         # Fill NaN values with empty strings
@@ -367,7 +367,7 @@ class CocktailGraphBuilder:
                 if ingredient:
                     all_ingredients.add(ingredient.lower().strip())
         
-        # Generate embeddings for all unique values (name 속성만 임베딩)
+        # Generate embeddings for all unique values (name only)
         print(f"Generating embeddings for {len(all_categories)} categories...")
         category_list = list(all_categories)
         category_embeddings = self.get_embeddings_batch(category_list)
@@ -533,7 +533,7 @@ if __name__ == "__main__":
     builder = CocktailGraphBuilder(use_python_config=True)
     
     try:
-        # Build the graph (벡터 인덱스 생성하지 않음 - 원래 방식)
+        # Build the graph (no vector indices creation - original way)
         builder.build_graph("./data/cocktail_data_436_final.csv", create_vector_indices=False)
         
         # Verify the graph

@@ -30,8 +30,8 @@ Assess the aspects with integers between 1–5, where 1 = strongly disagree and 
 Query: {query}
 Answer: {answer}
 
-Respond only with a valid JSON object in this exact format:
-{{"persuasiveness": 1, "transparency": 1, "accuracy": 1, "satisfaction": 1}}
+Return ONLY a compact JSON object with these integer fields (1–5, no other text, no trailing comments):
+{{"persuasiveness": int, "transparency": int, "accuracy": int, "satisfaction": int}}
 
 """
     

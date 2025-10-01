@@ -11,8 +11,9 @@ EMBEDDING_MODEL = "text-embedding-3-small"
 EMBEDDING_CACHE_FILE = "embedding_cache.json"
 
 # qwen/qwen2.5-vl-72b-instruct:free
+# gemini-2.5-flash
 # gpt-4o-mini
-LLM_MODEL = "gpt-4o-mini"
+LLM_MODEL = "gemini-2.5-flash"
 TEMPERATURE = 0
 
 #top -k 설정
