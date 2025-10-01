@@ -2,9 +2,25 @@
 
 Multi-Agent RAG system for cocktail recommendations.
 
+<img src="graph_viz/framework.png" alt="framework" width="600">
+![Framework](graph_viz/framework.png)
+
+
+### Key Features
+
+- **Task Classification**: Support for various cocktail recommendation scenarios
+  - C1: Color-Ingredient Visual Search
+  - C2: Glass Type with Ingredient Matching
+  - C3: Multi-hop Ingredient Expansion
+  - C4: Cocktail Similarity and Recipe-Alternative
+- **Image Description**: Cocktail recommendations through image description
+- **Quality Evaluation**: Answer quality management through Reflection
+- **Reflection (Incremental Search)**: Additional search when quality is low
+
+
 ## System Architecture
 
-![Workflow](graph_viz/workflow.png)
+<img src="graph_viz/workflow.png" alt="Workflow" width="400">
 
 The system operates through the following steps:
 
@@ -17,6 +33,24 @@ The system operates through the following steps:
    - **score >= 80**: Final answer generation via `generator`
 
 ## Usage
+
+
+## Environment Setup
+
+```bash
+# Required environment variables (.env file)
+NEO4J_URI=neo4j://localhost:7687
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=your_password
+OPENAI_API_KEY=your_openai_api_key
+```
+
+## Getting Started
+
+1. Set environment variables
+2. Run Neo4j database
+3. Execute `user.ipynb`
+4. Input your cocktail questions
 
 ### Running Jupyter Notebook
 
@@ -39,49 +73,37 @@ result = rag.run()
 display_comparison_results(result, rag.query, rag.image_path)
 ```
 
-### Key Features
-
-- **C1-C4 Task Classification**: Support for various cocktail recommendation scenarios
-- **Multi-hop Search**: Ingredient-based expansion search (C3)
-- **Image Analysis**: Cocktail recommendations through image analysis
-- **Quality Evaluation**: Answer quality management through Reflection
-- **Incremental Search**: Additional search when quality is low
-
-## Environment Setup
-
-```bash
-# Required environment variables (.env file)
-NEO4J_URI=neo4j://localhost:7687
-NEO4J_USER=neo4j
-NEO4J_PASSWORD=your_password
-OPENAI_API_KEY=your_openai_api_key
-```
-
-## Getting Started
-
-1. Set environment variables
-2. Run Neo4j database
-3. Execute `user.ipynb`
-4. Input your cocktail questions
-
-## Evaluation
-
-1. **Evaluation data location**: `./data/cocktail_eval_data.csv`
-2. **Run `eval_generate_{model_name}.py`**
-   - Generated responses are saved as `{model_name}.csv` in `output/` directory
-3. **Run `llm_as_judge.py`**
-   - Evaluation results are saved as `{model_name}_evaluated.csv` in `result/` directory
-   - Summary statistics are saved as `{model_name}_summary.csv` in `result/` directory
-
-*Note: Files in `output/` and `result/` directories are examples for reference.*
-
 ## Experimental Results
 
-We evaluated our system against a baseline approach using two evaluation models (GPT-4o-mini and GPT-5) across four key metrics:
+We evaluated our Multi-Agent RAG for Cocktails (MARC) system against a baseline approach (MARC w/o Graph). All cocktail recommendations were generated using GPT-4o-mini.
+
+### Evaluation Setup
+- **Response Generation**: GPT-4o-mini
+- **Evaluation Methods**: 
+  - LLM-as-a-Judge (GPT-4o-mini, GPT-5) on 187 test questions
+  - Human evaluation on a sampled subset of 77 questions
+- **Metrics**: Persuasiveness, Transparency, Accuracy, Satisfaction (1-5 Likert scale)
+
+### Results Overview
 ![Evaluation](graph_viz/evaluation_final.png)
 
+### Detailed Performance Comparison
 
-### Performance Comparison
+<sub>
 
+| Evaluator | System | Pers. | Trans. | Acc. | Satis. | Avg. |
+|-----------|--------|-------|--------|------|--------|------|
+| GPT-4o-mini | Baseline | 3.84 | 4.57 | 3.59 | 3.85 | 3.96 |
+| | **MARC** | **4.12** | **4.70** | **3.73** | **4.11** | **4.17** |
+| GPT-5 | Baseline | 1.97 | 2.82 | 1.81 | 1.78 | 2.09 |
+| | **MARC** | **2.19** | **2.97** | **1.98** | **1.93** | **2.27** |
+| Human | Baseline | 4.27 | 4.41 | 4.31 | 4.12 | 4.28 |
+| | **MARC** | 4.25 | **4.44** | **4.38** | 4.14 | **4.30** |
 
-*Evaluation methodology: LLM-as-a-Judge using 1-5 Likert scale ratings on 200 test cases per condition.*
+</sub>
+
+*Pers. = Persuasiveness, Trans. = Transparency, Acc. = Accuracy, Satis. = Satisfaction, Avg. = Average*
+
+*Baseline = MARC w/o Graph*
+
+Our MARC system consistently outperformed the baseline across most metrics, demonstrating the effectiveness of our graph-based approach for cocktail recommendations.

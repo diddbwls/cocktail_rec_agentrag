@@ -1,0 +1,24 @@
+# Core dependencies
+openai>=1.0.0
+langgraph>=0.2.0
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.10
+
+# Database
+neo4j>=5.0.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.65.0
+
+# Development
+ipython>=8.0.0
+jupyter>=1.0.0
+notebook>=7.0.0
+
