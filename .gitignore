@@ -64,4 +64,3 @@ venv.bak/
 # data
 embedding_cache.json
 image.zip
-evaluation/
