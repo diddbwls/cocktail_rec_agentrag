@@ -84,7 +84,7 @@ We evaluated our Multi-Agent RAG for Cocktails (MARC) system against a baseline 
 - **Metrics**: Persuasiveness, Transparency, Accuracy, Satisfaction (1-5 Likert scale)
 
 
-> For detailed evaluation results and analysis, please refer to [**Evaluation Documentation**](./evaluation/readme.md).
+> For detailed evaluation results and analysis, please refer to [**Evaluation Documentation**](evaluation/readme.md).
 
 
 ### Results Overview
