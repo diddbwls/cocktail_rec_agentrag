@@ -4,7 +4,7 @@ Multi-Agent RAG system for cocktail recommendations.
 
 ![Framework](graph_viz/framework.png)
 
-
+ 
 ### Key Features
 
 - **Task Classification**: Support for various cocktail recommendation scenarios
