@@ -1,4 +1,4 @@
-# Cocktail Recommendation Agent RAGㅋ
+# Cocktail Recommendation Agent RAG
 
 Multi-Agent RAG system for cocktail recommendations.
 
