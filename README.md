@@ -35,6 +35,19 @@ The system operates through the following steps:
 
 
 > 📦 The dataset is also available on Hugging Face: [yujinyang/cocktails_436](https://huggingface.co/datasets/yujinyang/cocktails_436)
+```python
+from datasets import load_dataset
+
+# Load the cocktail recipes
+cocktails = load_dataset("yujinyang/cocktails_436", name="cocktails_436")
+
+# Load the question-answer split
+qa = load_dataset("yujinyang/cocktails_436", name="cocktails_question")
+
+# Access examples
+print(cocktails["default"][0])
+print(qa["default"][0])
+```
 
 
 ## Environment Setup
