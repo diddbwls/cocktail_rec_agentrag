@@ -34,6 +34,9 @@ The system operates through the following steps:
 ## Usage
 
 
+> 📦 The dataset is also available on Hugging Face: [yujinyang/cocktails_436](https://huggingface.co/datasets/yujinyang/cocktails_436)
+
+
 ## Environment Setup
 
 ```bash
