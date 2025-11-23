@@ -2,7 +2,7 @@
 
 > 📄 Paper: [arXiv:2511.08181](https://arxiv.org/abs/2511.08181)
 
-> 📦 Dataset: [Hugging Face Dataset](https://huggingface.co/datasets/yujinyang/cocktails_436)
+> 📦 Dataset: [HuggingFace Dataset](https://huggingface.co/datasets/yujinyang/cocktails_436)
 
 
 
