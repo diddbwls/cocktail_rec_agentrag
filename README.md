@@ -1,6 +1,6 @@
 ### 📎 Related Resources
 
-[<img align="center" src="https://img.shields.io/badge/arXiv:2511.08181" />](https://arxiv.org/abs/2511.08181)
+[<img align="center" src="https://img.shields.io/badge/arXiv-2511.08181" />](https://arxiv.org/abs/2511.08181)
 [<img align="center" src="https://img.shields.io/badge/🤗 Dataset-cocktail436-yellow" />](https://huggingface.co/datasets/yujinyang/cocktails_436)
 
 
